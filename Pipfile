@@ -12,6 +12,8 @@ djangorestframework = "*"
 psycopg2-binary = "*"
 spotipy = "*"
 python-dotenv = "*"
+request = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

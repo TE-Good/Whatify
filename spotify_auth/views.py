@@ -60,7 +60,14 @@ class Callback(RetrieveUpdateDestroyAPIView):
         # print(callback_url)
         # object1.replace('b\'?code=', '')
         # callback_url = object1.get(())
-        token = sp.get_access_token(callback_url)
-        return Response(print(token.get('access_token')))
+        token_num = sp.get_access_token(callback_url)
+        token_extract = token_num.get('access_token')
+        
+        sp1 = spotipy.Spotify(auth=token_extract)
+        request = sp1.me()
+        print(request)
+
+        return Response(print('Success'))
+        # return Response(print(token.get('access_token')))
         # print('access: ', token.get('access_token'))
         # return Response(request.GET)
