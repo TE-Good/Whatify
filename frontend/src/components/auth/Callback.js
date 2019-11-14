@@ -14,6 +14,7 @@ export default class Callback extends React.Component {
     console.log(object)
     axios.post('/api/callback', sendBack)
       .then(res => console.log('sent to the backend:',res.config.data))
+      .then(this.props.history.push('/biscuits'))
   }
 
 

@@ -49,6 +49,8 @@ url = sp.get_authorize_url()
 # cache = sp.get_access_token('')
 # print(cache)
 
+authed_spotify = None
+
 class AuthOutput(APIView):
     def get(self, _request):
         return Response(url)
@@ -63,11 +65,15 @@ class Callback(RetrieveUpdateDestroyAPIView):
         token_num = sp.get_access_token(callback_url)
         token_extract = token_num.get('access_token')
         
-        sp1 = spotipy.Spotify(auth=token_extract)
-        request = sp1.me()
+        global authed_spotify
+        authed_spotify = spotipy.Spotify(auth=token_extract)
+        request = authed_spotify.me()
         print(request)
 
-        return Response(print('Success'))
+        return Response(print('yo'))
         # return Response(print(token.get('access_token')))
         # print('access: ', token.get('access_token'))
         # return Response(request.GET)
+class RetrieveUser(APIView):
+    def get(self, _request):
+        return Response(authed_spotify.me())
