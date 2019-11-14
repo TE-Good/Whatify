@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
 
 spotify_client_id = os.getenv('SPOTIPY_CLIENT_ID')
 print(spotify_client_id)
@@ -52,12 +53,14 @@ class AuthOutput(APIView):
     def get(self, _request):
         return Response(url)
 
-class Callback(APIView):
-    def get(self, request):
-        object1 = request.GET
-        callback_url = object1.get('code')
+class Callback(RetrieveUpdateDestroyAPIView):
+    def post(self, request):
+        # queryset = self.get_queryset()
+        callback_url = request.body.decode("utf-8")
         # print(callback_url)
+        # object1.replace('b\'?code=', '')
+        # callback_url = object1.get(())
         token = sp.get_access_token(callback_url)
-        print('access: ', token.get('access_token'))
-
-        return Response(request.GET)
+        return Response(print(token.get('access_token')))
+        # print('access: ', token.get('access_token'))
+        # return Response(request.GET)
