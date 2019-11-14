@@ -1,35 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import axios from 'axios'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-class App extends React.Component{
-  constructor(){
-    super()
+import Home from './components/common/Home'
+import Callback from './components/auth/Callback'
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+import 'normalize.css'
+import './style.scss'
 
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path='/dashboard' component={Callback}/>
+      <Route exact path='/' component={Home}/>
+      <Route exact path='' component={Home} />
 
-  handleSubmit(e){
-    e.preventDefault()
-    console.log('submitted')
-    axios.get('/api/login')
-      .then(res => {
-        console.log(res.data)
-        window.location.assign(res.data)
-      })
-  }
+    </Switch>
+  </BrowserRouter>
+)
 
-  render(){
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>Authorize</h3>
-        <button>Submit</button>
-
-      </form>
-    )
-  }
-}
 
 ReactDOM.render(
   <App />,
