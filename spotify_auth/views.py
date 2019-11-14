@@ -54,7 +54,10 @@ class AuthOutput(APIView):
 
 class Callback(APIView):
     def get(self, request):
-        # return Response(print('self', request))
-        # return Response(print('self', request.data))
-        return Response(print(self.head))
-        # sp.parse_response_code()
+        object1 = request.GET
+        callback_url = object1.get('code')
+        # print(callback_url)
+        token = sp.get_access_token(callback_url)
+        print('access: ', token.get('access_token'))
+
+        return Response(request.GET)
