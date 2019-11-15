@@ -52,13 +52,15 @@ authed_spotify = None
 
 class AuthOutput(APIView):
     def get(self, _request):
-        global sp
+        global sp 
+        sp = None
         sp = spotipy.oauth2.SpotifyOAuth(spotify_client_id, spotify_client_secret, spotify_redirect_uri, state=None, scope=scope, cache_path=None, proxies=None)
         url = sp.get_authorize_url()
         return Response(url)
 
 class Callback(RetrieveUpdateDestroyAPIView):
     def post(self, request):
+        global sp
         # queryset = self.get_queryset()
         callback_url = request.body.decode("utf-8")
         # print(callback_url)

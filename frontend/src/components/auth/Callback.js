@@ -7,7 +7,7 @@ export default class Callback extends React.Component {
 
   }
   componentDidMount() {
-    const object = this.props.location.search.replace('?code=','')
+    let object = this.props.location.search.replace('?code=','')
     // const object = this.props.location.search
     // const sendBack = { 'code': `${object}` }
     const sendBack = object
