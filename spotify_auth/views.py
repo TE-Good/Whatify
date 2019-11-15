@@ -89,15 +89,37 @@ class RetrieveUser(APIView):
         'image': profile_data['images'][0]['url']
         }
         r = requests.post('http://localhost:8000/db/user', data=payload)
-        whole_object = authed_spotify.current_user_top_tracks(limit=1, offset=1, time_range='medium_term')
-        top_track_name = whole_object['items'][0]['name']
-        top_track_artist = whole_object['items'][0]['album']['artists'][0]['name']
-        top_track_preview = whole_object['items'][0]['preview_url']
-        top_track_in_album = whole_object['items'][0]['album']['name']
-        top_track_album_art = whole_object['items'][0]['album']['images'][0]['url']
-        print('top song is called', top_track_name, 'by', top_track_artist, 'from the album', top_track_in_album)
-        print('listen here: ', top_track_preview)
-        print('album art: ', top_track_album_art)
+
+
+      
+        whole_object = authed_spotify.current_user_top_tracks(limit=50, offset=1, time_range='medium_term')
+        whole_object_items = whole_object['items']
+        for i, index in enumerate(whole_object_items):
+            print(index, i)
+            track_id = whole_object_items[i]['id']
+            track_name = whole_object_items[i]['name']
+            track_artist = whole_object_items[i]['album']['artists'][0]['name']
+            track_preview = whole_object_items[i]['preview_url']
+            track_in_album = whole_object_items[i]['album']['name']
+            track_album_art = whole_object_items[i]['album']['images'][0]['url']
+
+            song_payload = {
+              "track_id": track_id,
+              "track_name": track_name,
+              "track_artist": track_artist,
+              "track_preview": track_preview,
+              "track_in_album": track_in_album,
+              "track_album_art": track_album_art
+            }
+
+            r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
+
+        print('track id ', 'song id = ', track_id)
+        print('top song is called', track_name, 'by', track_artist, 'from the album', track_in_album)
+        print('listen here: ', track_preview)
+        print('album art: ', track_album_art)
+
+
         return Response(print(profile_data.get('display_name')))
 
 
@@ -105,3 +127,11 @@ class RetrieveUser(APIView):
 # get data from spotify
 # make sure its in a json format
 # make a post request from the backend using request with the body of the request holding the json data
+
+
+# track_id = whole_object['items'][0]['id']
+#         track_name = whole_object['items'][0]['name']
+#         track_artist = whole_object['items'][0]['album']['artists'][0]['name']
+#         track_preview = whole_object['items'][0]['preview_url']
+#         track_in_album = whole_object['items'][0]['album']['name']
+#         track_album_art = whole_object['items'][0]['album']['images'][0]['url']
