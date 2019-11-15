@@ -6,6 +6,8 @@ import webbrowser
 
 from dotenv import load_dotenv
 
+import requests
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
@@ -68,7 +70,7 @@ class Callback(RetrieveUpdateDestroyAPIView):
         # callback_url = object1.get(())
         token_num = sp.get_access_token(callback_url)
         token_extract = token_num.get('access_token')
-        
+
         global authed_spotify
         authed_spotify = spotipy.Spotify(auth=token_extract)
         request = authed_spotify.me()
@@ -78,9 +80,13 @@ class Callback(RetrieveUpdateDestroyAPIView):
         # return Response(print(token.get('access_token')))
         # print('access: ', token.get('access_token'))
         # return Response(request.GET)
+
 class RetrieveUser(APIView):
     def get(self, _request):
-        return Response(authed_spotify.me())
+        profile_data = authed_spotify.me()
+        print(profile_data.username)
+        r = requests.post('http://localhost:8000/api/user', data={ 'username': profile_data.username })
+        return Response(print('success'))
 
 # get data from spotify
 # make sure its in a json format
