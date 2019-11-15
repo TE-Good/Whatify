@@ -39,8 +39,6 @@ scope = 'user-library-read'
 
 
 
-sp = spotipy.oauth2.SpotifyOAuth(spotify_client_id, spotify_client_secret, spotify_redirect_uri, state=None, scope=scope, cache_path=None, proxies=None)
-url = sp.get_authorize_url()
 
 # print(url)
 # code = sp.parse_response_code('https://www.whatify.com/whatify?code=AQDTHh3oJXiMyzdSlZFcwVn7BBYxrafyDPoEh04dK_yqn8SNKEl3qtOR-i9WtgB1SWvViYYNaqq3OVzqRE_1ev0KTMS--7G-i7Mc_FmeRdWhmIJAbvuh2sOO9xTUsDu_KxHXFGflhiYXh_1Fx8wGPhHYFlpA_AvijAivQz-SMSykZMYa-8TSQ40b19syBW1-o6uO5k1VjRjKaXIoXRIgiexmcg')
@@ -49,14 +47,20 @@ url = sp.get_authorize_url()
 # cache = sp.get_access_token('')
 # print(cache)
 
+sp = None
 authed_spotify = None
 
 class AuthOutput(APIView):
     def get(self, _request):
+        global sp 
+        sp = None
+        sp = spotipy.oauth2.SpotifyOAuth(spotify_client_id, spotify_client_secret, spotify_redirect_uri, state=None, scope=scope, cache_path=None, proxies=None)
+        url = sp.get_authorize_url()
         return Response(url)
 
 class Callback(RetrieveUpdateDestroyAPIView):
     def post(self, request):
+        global sp
         # queryset = self.get_queryset()
         callback_url = request.body.decode("utf-8")
         # print(callback_url)
