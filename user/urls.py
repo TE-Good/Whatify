@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import SpotifyUser
+from .views import SpotifyUserListView
 
 urlpatterns = [
-    path('user', SpotifyUser.as_view()),
+    path('user', SpotifyUserListView.as_view()),
 ]

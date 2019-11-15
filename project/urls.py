@@ -20,6 +20,7 @@ urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('admin/', include('rest_framework.urls')),
     path('api/', include('spotify_auth.urls')),
+    path('db/', include('user.urls')),
     path('', include('frontend.urls'))
     # path('api/', include('stations.urls')), REMEMBER TO CHANGE STATIONS
     # path('api/', include('jwt_auth.urls')), JWT?!

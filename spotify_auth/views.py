@@ -84,9 +84,14 @@ class Callback(RetrieveUpdateDestroyAPIView):
 class RetrieveUser(APIView):
     def get(self, _request):
         profile_data = authed_spotify.me()
-        print(profile_data.username)
-        r = requests.post('http://localhost:8000/api/user', data={ 'username': profile_data.username })
-        return Response(print('success'))
+        payload = {'displayname': profile_data.get('display_name'),
+        'username': profile_data.get('id'),
+        'image': profile_data['images'][0]['url']
+        }
+        r = requests.post('http://localhost:8000/db/user', data=payload)
+        return Response(print(profile_data.get('display_name')))
+
+
 
 # get data from spotify
 # make sure its in a json format

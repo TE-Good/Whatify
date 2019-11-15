@@ -6,7 +6,6 @@ export default class Dash extends React.Component {
     super()
     this.state = {
       user: {
-        display_name: ''
 
       }
     }
@@ -15,7 +14,7 @@ export default class Dash extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       axios.get('api/retrieve')
-        .then(res => this.setState({ user: res.data.username }))
+        .then(res => this.setState({ user: res.data }))
     }, 500)
   }
 
@@ -32,7 +31,7 @@ export default class Dash extends React.Component {
     if (!this.state) return null
     return (
       <div>
-        Welcome back, {this.state.user.display_name}!
+        Welcome back, {this.state.user.username}!
         <form onSubmit={this.logout}>
           <button type='submit'>Log out</button>
         </form>
