@@ -20,7 +20,7 @@ print(spotify_client_secret)
 spotify_redirect_uri = os.getenv('SPOTIPY_REDIRECT_URI')
 print(spotify_redirect_uri)
 
-scope = 'user-library-read'
+scope = 'user-library-read user-top-read user-read-recently-played user-read-currently-playing'
 
 # if len(sys.argv) > 1:
 #     username = sys.argv[1]
@@ -89,6 +89,15 @@ class RetrieveUser(APIView):
         'image': profile_data['images'][0]['url']
         }
         r = requests.post('http://localhost:8000/db/user', data=payload)
+        whole_object = authed_spotify.current_user_top_tracks(limit=1, offset=1, time_range='medium_term')
+        top_track_name = whole_object['items'][0]['name']
+        top_track_artist = whole_object['items'][0]['album']['artists'][0]['name']
+        top_track_preview = whole_object['items'][0]['preview_url']
+        top_track_in_album = whole_object['items'][0]['album']['name']
+        top_track_album_art = whole_object['items'][0]['album']['images'][0]['url']
+        print('top song is called', top_track_name, 'by', top_track_artist, 'from the album', top_track_in_album)
+        print('listen here: ', top_track_preview)
+        print('album art: ', top_track_album_art)
         return Response(print(profile_data.get('display_name')))
 
 

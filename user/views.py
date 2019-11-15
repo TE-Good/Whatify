@@ -9,3 +9,5 @@ from .serializers import SpotifyUserSerializer
 class SpotifyUserListView(ListCreateAPIView):
     queryset = SpotifyUser.objects.all()
     serializer_class = SpotifyUserSerializer
+
+    
