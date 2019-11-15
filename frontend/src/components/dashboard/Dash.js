@@ -16,12 +16,15 @@ export default class Dash extends React.Component {
     setTimeout(() => {
       axios.get('api/retrieve')
         .then(res => this.setState({ user: res.data }))
-    }, 1000)
+    }, 500)
   }
+
 
   logout(e){
     e.preventDefault()
-    window.open('https://accounts.spotify.com/en/logout', 'Spotify Logout', 'width=600,height=400,top=50,left=50')
+    const url = 'https://accounts.spotify.com/en/logout'
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=600,height=400,top=50,left=50')
+    setTimeout(() => spotifyLogoutWindow.close(), 3000)
     window.location.assign('/')
   }
 

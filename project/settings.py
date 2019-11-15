@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'frontend',
-    'spotify_auth'
+    'spotify_auth',
+    'user'
 ]
 
 MIDDLEWARE = [

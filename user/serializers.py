@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import User
 
-class UserSerializer(serializers.ModelSerializer):
+class SpotifyUserSerializer(serializers.ModelSerializer):
 
     def create(self, data):  # data is the incoming json converted to a python dict
 
