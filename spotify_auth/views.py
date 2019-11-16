@@ -88,7 +88,7 @@ class RetrieveUser(APIView):
     def get(self, _request):
         profile_data = authed_spotify.me()
         #if profilr_data['images] is true, then set img = profile_data['images'][0]['url'], else, return none
-        image = profile_data['images'][0]['url'] if profile_data['images'] else 'No Image'
+        image = profile_data['images'][0]['url'] if profile_data['images'] else 'https://news.artnet.com/app/news-upload/2016/03/kanye-west-crop-e1458141735868-256x256.jpg'
         # if (not image):
         #   image = 'No image'
         payload = {'displayname': profile_data.get('display_name'),
