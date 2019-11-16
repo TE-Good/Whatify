@@ -81,12 +81,19 @@ class Callback(RetrieveUpdateDestroyAPIView):
         # print('access: ', token.get('access_token'))
         # return Response(request.GET)
 
+
+
+
 class RetrieveUser(APIView):
     def get(self, _request):
         profile_data = authed_spotify.me()
+        #if profilr_data['images] is true, then set img = profile_data['images'][0]['url'], else, return none
+        image = profile_data['images'][0]['url'] if profile_data['images'] else 'No Image'
+        # if (not image):
+        #   image = 'No image'
         payload = {'displayname': profile_data.get('display_name'),
         'username': profile_data.get('id'),
-        'image': profile_data['images'][0]['url']
+        'image': image
         }
         r = requests.post('http://localhost:8000/db/user', data=payload)
 
@@ -111,13 +118,18 @@ class RetrieveUser(APIView):
               "track_in_album": track_in_album,
               "track_album_art": track_album_art
             }
+            collections_payload = {
+                'SpotifyUser_username_id': profile_data.get('id'),
+                'Song_track_id': track_id
+            }
 
             r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
+            r = requests.post('http://localhost:8000/db/collections', data=collections_payload)
 
-        print('track id ', 'song id = ', track_id)
-        print('top song is called', track_name, 'by', track_artist, 'from the album', track_in_album)
-        print('listen here: ', track_preview)
-        print('album art: ', track_album_art)
+        # print('track id ', 'song id = ', track_id)
+        # print('top song is called', track_name, 'by', track_artist, 'from the album', track_in_album)
+        # print('listen here: ', track_preview)
+        # print('album art: ', track_album_art)
 
 
         return Response(print(profile_data.get('display_name')))

@@ -15,4 +15,9 @@ class Song(models.Model):
     track_in_album = models.CharField(max_length=200, unique=False)
     track_album_art = models.CharField(max_length=200, unique=False)
 
+class Collections(models.Model):
+    SpotifyUser_username_id = models.CharField(max_length=500, default='')
+    Song_track_id = models.CharField(max_length=500, default='')
 
+    class Meta:
+      unique_together = ('SpotifyUser_username_id', 'Song_track_id')

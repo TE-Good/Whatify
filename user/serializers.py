@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import SpotifyUser, Song
+from .models import SpotifyUser, Song, Collections
 
 class SpotifyUserSerializer(serializers.ModelSerializer):
 
-    def create(self, data):  # data is the incoming json converted to a python dict
+    def create(self, data): 
 
-        user = SpotifyUser(**data) # create the station from the data left over
-        user.save() # we need to save to ensure primary key has been created before attempting to set many to many relationship on the model
+        user = SpotifyUser(**data) 
+        user.save() 
         return user
 
     class Meta:
@@ -15,13 +15,25 @@ class SpotifyUserSerializer(serializers.ModelSerializer):
 
 class SongSerializer(serializers.ModelSerializer):
 
-    def create(self, data):  # data is the incoming json converted to a python dict
+    def create(self, data): 
 
-        song = Song(**data) # create the station from the data left over
-        song.save() # we need to save to ensure primary key has been created before attempting to set many to many relationship on the model
+        song = Song(**data)
+        song.save()
         return song
 
     class Meta:
         model = Song
         fields = ('track_id', 'track_name', 'track_name', 'track_artist', 'track_preview', 'track_in_album', 'track_album_art')
 
+class CollectionsSerializer(serializers.ModelSerializer):
+    
+    def create(self, data):
+
+        collection = Collections(**data)
+        collection.save()
+        return collection
+
+    class Meta:
+        model = Collections
+        fields = ('SpotifyUser_username_id', 'Song_track_id')
+        # UniqueConstraint(fields=['SpotifyUser_username_id', 'Song_track_id'])
