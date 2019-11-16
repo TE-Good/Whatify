@@ -1,17 +1,6 @@
 from rest_framework import serializers
 from .models import SpotifyUser, Song, Collections
 
-class SpotifyUserSerializer(serializers.ModelSerializer):
-
-    def create(self, data): 
-
-        user = SpotifyUser(**data) 
-        user.save() 
-        return user
-
-    class Meta:
-        model = SpotifyUser
-        fields = ('id', 'username', 'displayname', 'image')
 
 class SongSerializer(serializers.ModelSerializer):
 
@@ -36,4 +25,17 @@ class CollectionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collections
         fields = ('SpotifyUser_username_id', 'Song_track_id')
-        # UniqueConstraint(fields=['SpotifyUser_username_id', 'Song_track_id'])
+
+class SpotifyUserSerializer(serializers.ModelSerializer):
+
+    songs = SongSerializer(many=True)
+
+    def create(self, data): 
+
+        user = SpotifyUser(**data) 
+        user.save() 
+        return user
+
+    class Meta:
+        model = SpotifyUser
+        fields = ('id', 'username', 'displayname', 'image', 'songs')
