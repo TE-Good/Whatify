@@ -1,3 +1,6 @@
+body{
+  background-color: whitesmoke;
+}
 .container{
   padding: 10px;
   margin: 10px;
@@ -16,35 +19,68 @@
   border: 2px solid red;
   display: flex;
   flex-direction: column;
-  max-width: 640px;
+  width: 85vw;
   height: 640px;
   margin: auto;
+  margin-top: 8px;
 }
 .stagingArea{
   border: 2px solid greenyellow;
+  width: 60vw;
+  height: 45vh;
+  margin: auto;
 }
 .choices{
   display: flex;
   flex-direction: column;
 }
 .countDown{
-  min-height: 4px;
+  min-height: 10px;
   background-color: rgb(6, 128, 204);
-  padding: 2px;
-  transform: translateY(-8px);
+  padding: 0px;
+  transform: translateY(-10px);
+  transition: linear 0.2s;
 }
 .countDownEmpty{
   position: relative;
-  width: 600px;
+  width: 100vw;
   min-height: 4px;
-  background-color: rgb(143, 180, 202);
-  padding: 2px;
+  background-color: rgb(166, 182, 192);
+  padding: 3px;
 }
 h2, h3 {
   text-align: center;
 }
 .endRound{
-  border: 2px solid purple
+  width: 60vw;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(128, 0, 128, 0.288);
+  margin: auto;
+  align-items: center;
+  padding-bottom: 2px;
+}
+.roundImg{
+  max-width: 320px;
+  margin: auto;
+}
+.choiceButtons{
+  background-color: white;
+  width: 480px;
+  margin: auto;
+  margin-top: 8px;
+  height: 50px;
+}
+.flex-row{
+  display: flex;
+}
+.flex-right{
+  display:flex;
+  flex-direction: column;
+  min-width: 50%;
+  min-height: 300px;
+  padding-left: 12px;
 }
 
 /*

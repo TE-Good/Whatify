@@ -6,6 +6,8 @@ export default class Game extends React.Component {
     super()
     this.state = {
       score: 0,
+      width: 100,
+      time: 30000,
       gameState: 'start',
       username: 'nuclearsheep',
       gameData: [
@@ -20,11 +22,9 @@ export default class Game extends React.Component {
         }
       ]
     }
-    this.answers = ['a', 'b', 'c']
     this.collections =
       [
-        { //empty index [0] prevents audio from starting as iframe will auto load data in state
-          //game starts on index [1]. To have game auto play, delete this empty object
+        {
           track_id: '1HiaZTm2nGQL4wtnJLPNV0',
           track_name: 'Street Player - 2003 Remaster',
           track_artist: 'Chicago',
@@ -39,6 +39,30 @@ export default class Game extends React.Component {
           track_preview: 'https://p.scdn.co/mp3-preview/1543df6fb9d5e822d73fc995270bb1f615fd9251?cid=af12ae61b9ee42db83fc4b445ff51b0a',
           track_in_album: 'The Switcheroo Series',
           track_album_art: 'https://i.scdn.co/image/ab67616d0000b2735d78f381fa21ecb0e10a9226'
+        },
+        {
+          track_id: '4u9f8hqstB7iITDJNzKhQx',
+          track_name: 'My Generation - Stereo Version',
+          track_artist: 'The Who',
+          track_preview: 'https://p.scdn.co/mp3-preview/190ce50d7bc21852d7b0545efa58f48fd88ddfc2?cid=af12ae61b9ee42db83fc4b445ff51b0a',
+          track_in_album: 'My Generation',
+          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2736fda800d179e37c25646ca61'
+        },
+        {
+          track_id: '4J7GZ0QWuLsbL94nNZyn7S',
+          track_name: 'Husk',
+          track_artist: 'Black Foxxes',
+          track_preview: 'https://p.scdn.co/mp3-preview/705fcd0804c738c9f8a908f0253d9637d68a41bb?cid=af12ae61b9ee42db83fc4b445ff51b0a',
+          track_in_album: 'I\'m Not Well',
+          track_album_art: 'https://i.scdn.co/image/15d956246738653e20fd05ca732b33ea54ec62e9'
+        },
+        {
+          track_id: '20DcrlNK0NcRknbX4wcEO4',
+          track_name: 'Luchini AKA This Is It',
+          track_artist: 'Camp Lo',
+          track_preview: 'https://p.scdn.co/mp3-preview/1cfb0cb176d4459860bd7c84b1a39d9c36a0b771?cid=af12ae61b9ee42db83fc4b445ff51b0a',
+          track_in_album: 'Uptown Saturday Night',
+          track_album_art: 'https://i.scdn.co/image/ab67616d0000b27327608b688554d3cf9b4492ef'
         },
         {
           track_id: '0LYoVYuXzcfykyVzaydE9D',
@@ -105,11 +129,11 @@ export default class Game extends React.Component {
           track_album_art: 'https://i.scdn.co/image/ab67616d0000b273736145b97bab8fa92cb6113f'
         }
       ]
-   
+
     this.round = 0
     this.levelData = this.state.gameData[this.round]
     this.time = 30000
-    this.width = 600
+    this.answers = ['a', 'b', 'c', 'd']
 
     this.startRound = this.startRound.bind(this)
     this.nextRound = this.nextRound.bind(this)
@@ -147,42 +171,43 @@ export default class Game extends React.Component {
   startRound(n) {
     clearInterval(this.timer)
     console.log('Update recieved, updating data to round ', n)
-    this.setState(this.levelData = this.state.gameData[n])
+    // this.setState(this.levelData = this.state.gameData[n])
     //asign this.questions with random data from whatifydb, populating this level data trackname in one of them first
   }
 
-  startGame(){
+  startGame() {
     this.setState({ gameState: 'play' })
     console.log(this.gameState)
     this.nextRound()
+    this.handleAnswers()
   }
 
   countdownTimer() {
     this.timer = setInterval(() => {
-      this.time = this.time - 100
-      this.points = this.points - 1
-      this.width = this.width - 2
-      console.log('countdown:', this.time, 'width:', this.width, 'points remain = ', this.points)
-    }, 100)
-    setTimeout(() => {
-      clearInterval(this.timer)
-      this.time = 30000
-    }, 30000)
+      const time = this.state.time - 200
+      const width = Number(this.state.width - 0.68)
+      this.setState({ time })
+      this.points > 1 ? this.points = this.points - 2 : this.points = 0
+      this.setState({ width })
+    }, 200)
   }
 
   nextRound() {
     if (this.round === this.gameLength) {
       console.log('finished game')
       return console.log(this.state.score)
-
     }
+    this.setState({ width: 100 })
     this.points = 300
-    this.width = 600
-    this.time = 30000
+    this.setState({ time: 30000 })
     this.round = this.round + 1
     console.log('Updating round to level', this.round)
-    this.startRound(this.round)
-    this.countdownTimer()
+    this.handleAnswers()
+    setTimeout(() => {
+      this.startRound(this.round)
+      this.countdownTimer()
+    }, 100)
+
     return this.setState({ gameState: 'play' })
   }
 
@@ -193,8 +218,6 @@ export default class Game extends React.Component {
       this.result = false
     } else {
       clearInterval(this.timer)
-      console.log(this.points)
-      console.log(this.time)
       const score = this.state.score + this.points
       this.setState({ score })
       this.result = true
@@ -203,26 +226,31 @@ export default class Game extends React.Component {
   }
 
   render() {
-    console.log(this.state.gameState)
     var progbar = {
-      width: this.width + 'px'
+      width: this.state.width + 'vw'
     }
-    this.handleAnswers()
     if (!this.state.gameData) return null
     return (
-
       <>
         <div className='hidden'> {/* div where the music plays */}
           <iframe src={this.state.gameData[this.round].track_preview} allow='autoplay' id='player' />
         </div>
 
-        <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
-          <button onClick={this.startGame} value='1' >Play Game</button>
+        <div className={`${this.state.gameState !== 'start' ? '' : 'hidden'}`}> {/* this is the cowndown timer */}
+          <div className='countDownEmpty'></div>
+          <div className='countDown' style={progbar}></div>
         </div>
+
+
+        <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
+          <button  className='choiceButtons' onClick={this.startGame} value='1' >Play Game</button>
+        </div>
+
+
 
         <div className={`${this.state.gameState === 'play' ? 'stage' : 'hidden'}`}>
           <div>{!this.round ? <h2 className='' id='r2p'>Get Ready To Play!</h2> : <h2>Round {this.round}</h2>}
-            <p>Score:{this.state.score}</p>
+            <h3>Score: {this.state.score}</h3>
           </div>
 
           <div className='stagingArea'>
@@ -232,23 +260,33 @@ export default class Game extends React.Component {
               {/* map this.questions as this.questions populate on each round start */}
               <div className='choices'>
                 {/*button on click function that checks the button.event.value to the levelData.track_name if != then wrong, if == TRUE then correct, then run next round*/}
-                {this.answers.map((choice, i) => <button key={i} name={choice} onClick={this.handleChoice}>{choice}</button>)}
+                {this.answers.map((choice, i) => <button key={i} className='choiceButtons' name={choice} onClick={this.handleChoice}>{choice}</button>)}
               </div>
             </div> {/* end of questions */}
-            <div className='countDown' style={progbar}></div>
-            {/* <div className='countDownEmpty'></div> */}
           </div> {/* end of stagingArea */}
         </div> {/* end of stage */}
-       
+
 
         <div className={`${this.state.gameState === 'end' ? 'stage' : 'hidden'}`}>
-          {this.round ? <div>
-            {this.result ? <p>Correct!</p> : <p>Wrong!</p>}
-            <img src={this.state.gameData[this.round].track_album_art}></img>
-            <p>That was {this.state.gameData[this.round].track_name} by {this.state.gameData[this.round].track_artist}</p>
+          <h2>Round {this.round}</h2>
+          {this.result ? <h3>Correct!</h3> : <h3>Wrong!</h3>}
+          {this.round ? <div className='endRound'>
+
+            
+            <h4>+{this.result ? this.points : 0} points</h4>
+            <div className='flex-row'>
+              <img className='roundImg' src={this.state.gameData[this.round].track_album_art}></img>
+              <div className='flex-right'>
+                <p>Track: {this.state.gameData[this.round].track_name}</p>
+                <p>Artist: {this.state.gameData[this.round].track_artist}</p>
+                <p>From The Album: {this.state.gameData[this.round].track_in_album}</p>
+                <br />
+                <p>You guessed this track in {parseFloat(30 - this.state.time / 1000).toFixed(2)} seconds!</p>
+              </div>
+            </div>
           </div> : null
           }
-          <button onClick={this.nextRound} value='1' >Next Round</button>
+          <button className='choiceButtons' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
         </div>
       </>
     )
