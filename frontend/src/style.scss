@@ -8,6 +8,28 @@
   text-align: center;
   max-width: 50vw;
 }
+.hidden{
+  //hidden styles main
+  display: none;
+}
+.stage{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  height: 640px;
+  margin: auto;
+}
+.stagingArea{
+  border: 2px solid greenyellow;
+}
+.choices{
+  display: flex;
+  flex-direction: column;
+}
+h2, h3 {
+  text-align: center;
+}
 
 /*
 * Skeleton V2.0.4

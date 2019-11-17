@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/common/Home'
 import Callback from './components/auth/Callback'
 import Dash from './components/dashboard/Dash'
+import Play from './components/common/Game'
 
 import 'normalize.css'
 import './style.scss'
@@ -12,8 +13,9 @@ import './style.scss'
 const App = () => (
   <BrowserRouter>
     <Switch>
+      <Route path='/play' component={Play}/>
       <Route exact path='/dashboard' component={Callback}/>
-      <Route exact path='/biscuits' component={Dash}/>
+      <Route exact path='/dash' component={Dash}/>
       <Route exact path='/' component={Home}/>
       <Route exact path='' component={Home} />
 

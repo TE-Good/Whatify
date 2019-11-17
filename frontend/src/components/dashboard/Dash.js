@@ -4,11 +4,13 @@ import axios from 'axios'
 export default class Dash extends React.Component {
   constructor() {
     super()
+    this.play = this.play.bind(this)
     this.state = {
       user: {
 
       }
     }
+    
   }
 
   componentDidMount() {
@@ -26,6 +28,10 @@ export default class Dash extends React.Component {
     setTimeout(() => spotifyLogoutWindow.close(), 3000)
     window.location.assign('/')
   }
+  play(e){
+    e.preventDefault()
+    this.props.history.push('/play')
+  }
 
   render() {
     if (!this.state) return null
@@ -34,6 +40,9 @@ export default class Dash extends React.Component {
         Welcome back, {this.state.user.username}!
         <form onSubmit={this.logout}>
           <button type='submit'>Log out</button>
+        </form>
+        <form onSubmit={this.play}>
+          <button type='submit'>Play</button>
         </form>
       </div>
     )
