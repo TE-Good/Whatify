@@ -30,7 +30,12 @@ export default class Game extends React.Component {
     this.uniqueCounter = []    
     this.timer = null
     this.result = null
-    this.gameLength = 10
+    this.gameLength = 5
+    this.scoreSheet = []
+    this.timeSheet = 0
+    this.minMax = []
+    this.min = 0
+    this.max = 0
 
     this.startRound = this.startRound.bind(this)
     this.nextRound = this.nextRound.bind(this)
@@ -99,22 +104,10 @@ export default class Game extends React.Component {
     this.setState({ answers })
   }
 
-  // checkdupes() {
-  //   const dupes = new Set([...this.state.answers])
-  //   console.log('dupe array', dupes)
-  //   // if (dupes !== [] && !dupes) {
-  //   //   console.log(dupes)
-  //   //   this.setState({ answers: ['a','b','c','d'] })
-  //   //   this.handleAnswers()
-  //   // }
-  // }
-
   startRound(n) {
     clearInterval(this.timer)
     console.log('Update recieved, updating data to round ', n)
-    this.round === 0 ? this.setState({ gameState: 'start' }) : null
-    // this.setState(this.levelData = this.state.gameData[n])
-    //asign this.questions with random data from whatifydb, populating this level data trackname in one of them first
+    this.round === 0 ? this.setState({ gameState: 'start' }) : null 
   }
 
   startGame() {
@@ -137,7 +130,12 @@ export default class Game extends React.Component {
   nextRound() {
     if (this.round === this.gameLength) {
       console.log('finished game')
-      return console.log(this.state.score)
+      this.setState({ gameState: 'endscreen' })
+
+      this.min = Math.min(this.minMax)
+      this.max = Math.max(this.minMax)
+      
+      return this.round = 0
     }
     this.setState({ width: 100 })
     this.points = 300
@@ -149,7 +147,6 @@ export default class Game extends React.Component {
       this.startRound(this.round)
       this.countdownTimer()
     }, 100)
-
     return this.setState({ gameState: 'play' })
   }
 
@@ -158,12 +155,18 @@ export default class Game extends React.Component {
     if (e.target.name !== this.state.gameData[this.round].track_name) {
       clearInterval(this.timer)
       this.result = false
+      this.scoreSheet.push('false')
     } else {
       clearInterval(this.timer)
       const score = this.state.score + this.points
       this.setState({ score })
       this.result = true
+      this.scoreSheet.push('true')
     }
+    console.log(this.scoreSheet)
+    const roundTime = (parseFloat(30 - this.state.time / 1000).toFixed(2))
+    this.timeSheet += parseFloat(roundTime)
+    this.minMax.push(parseFloat(roundTime))
     return this.setState({ gameState: 'end' })
   }
 
@@ -237,6 +240,31 @@ export default class Game extends React.Component {
           }
           <button className='choiceButtons' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
         </div>
+
+        
+        <div className={`${this.state.gameState === 'endscreen' ? 'stagingArea' : 'hidden'}`}>
+          <h3>Your Score: {this.state.score}</h3>
+          <h3>Time Spent: {this.timeSheet.toFixed(2)} seconds</h3>
+        
+
+          <div className='endScreen'>
+            {this.state.gameData.map((element, i) => (
+              element.track_name !== '' ?
+
+                <div className='resultsCard' key={i}>
+                  <img className='endScreenImg' src={element.track_album_art}></img>
+                  <p>{element.track_name} by {element.track_artist}</p>
+                  <h2>{this.scoreSheet[i - 1] === 'true' ? '✔︎' : '✖︎'}</h2>
+                  <p>{this.minMax[i - 1]}</p>
+                </div> : null
+            ))}
+
+          </div>
+        </div>
+
+
+
+
       </>
     )
   }

@@ -14,7 +14,7 @@
   display: none;
 }
 .stage{
-  border: 2px solid red;
+  // border: 2px solid red;
   display: flex;
   flex-direction: column;
   width: 85vw;
@@ -23,7 +23,7 @@
   margin-top: 8px;
 }
 .stagingArea{
-  border: 2px solid greenyellow;
+  // border: 2px solid greenyellow;
   width: 60vw;
   height: 45vh;
   margin: auto;
@@ -54,7 +54,7 @@ h2, h3 {
   height: 45vh;
   display: flex;
   flex-direction: column;
-  border: 2px solid rgba(128, 0, 128, 0.288);
+  // border: 2px solid rgba(128, 0, 128, 0.288);
   margin: auto;
   align-items: center;
   padding-bottom: 2px;
@@ -80,6 +80,27 @@ h2, h3 {
   min-height: 300px;
   padding-left: 12px;
 }
+.endScreenImg{
+  max-width: 180px;
+  max-height: 180px;
+}
+.endScreen{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  // justify-content: space-evenly;
+  min-width: 70vw;
+  min-height: 40vh;
+  overflow: scroll;
+
+  }
+  .resultsCard{
+    max-width: 30vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+
 
 /*
 * Skeleton V2.0.4
