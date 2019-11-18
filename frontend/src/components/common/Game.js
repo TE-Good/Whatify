@@ -8,8 +8,9 @@ export default class Game extends React.Component {
       score: 0,
       width: 100,
       time: 30000,
-      gameState: 'start',
+      gameState: 'loading',
       username: 'nuclearsheep',
+      answers: ['a', 'b', 'c', 'd'],
       gameData: [
         { //empty index [0] prevents audio from starting as iframe will auto load data in state
           //game starts on index [1]. To have game auto play, delete this empty object
@@ -27,7 +28,7 @@ export default class Game extends React.Component {
     this.round = 0
     this.levelData = this.state.gameData[this.round]
     this.time = 30000
-    this.answers = ['a', 'b', 'c', 'd']
+   
 
     this.startRound = this.startRound.bind(this)
     this.nextRound = this.nextRound.bind(this)
@@ -39,7 +40,7 @@ export default class Game extends React.Component {
     this.timer = null
     this.result = null
     this.gameLength = 10
-    //gamestate is either start, play or end
+    //gamestate is either loading, start, play or end
   }
 
   componentDidMount() {
@@ -68,19 +69,36 @@ export default class Game extends React.Component {
   }
 
   handleAnswers() {
-    this.answers = this.answers.map(() => (
+    var answers = this.state.answers.map(() => (
       this.state.collections[(Math.ceil(Math.random() * Math.ceil(this.state.collections.length - 1)))].track_name)
     )
-    if (!this.answers.includes(this.state.gameData[this.round].track_name)) {
-      this.answers[(Math.ceil(Math.random() * Math.ceil(this.answers.length - 1)))] = this.state.gameData[this.round].track_name
-    } else {
-      console.log('the answer is here')
+    if (!answers.includes(this.state.gameData[this.round].track_name)) {
+      answers[(Math.ceil(Math.random() * Math.ceil(this.state.answers.length - 1)))] = this.state.gameData[this.round].track_name
+    } 
+    // console.log(answers)
+    const dupes = [...new Set([...answers])]
+    // console.log(dupes)
+    if (dupes.length < 4) {
+      // console.log('dupes', dupes)
+      return this.handleAnswers()
     }
+    this.setState({ answers })
   }
+
+  // checkdupes() {
+  //   const dupes = new Set([...this.state.answers])
+  //   console.log('dupe array', dupes)
+  //   // if (dupes !== [] && !dupes) {
+  //   //   console.log(dupes)
+  //   //   this.setState({ answers: ['a','b','c','d'] })
+  //   //   this.handleAnswers()
+  //   // }
+  // }
 
   startRound(n) {
     clearInterval(this.timer)
     console.log('Update recieved, updating data to round ', n)
+    this.round === 0 ? this.setState({ gameState: 'start' }) : null
     // this.setState(this.levelData = this.state.gameData[n])
     //asign this.questions with random data from whatifydb, populating this level data trackname in one of them first
   }
@@ -136,7 +154,7 @@ export default class Game extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     var progbar = {
       width: this.state.width + 'vw'
     }
@@ -147,12 +165,18 @@ export default class Game extends React.Component {
           <iframe src={this.state.gameData[this.round].track_preview} allow='autoplay' id='player' />
         </div>
 
-        <div className={`${this.state.gameState !== 'start' ? '' : 'hidden'}`}> {/* this is the cowndown timer */}
+        <div > {/* this is the cowndown timer */}
           <div className='countDownEmpty'></div>
           <div className='countDown' style={progbar}></div>
         </div>
 
+        <div className={`${this.state.gameState === 'loading' ? '' : 'hidden'}`}>
+          <h3>Loading game...</h3>
+          <center>
+            <img src='https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif'></img>  
+          </center>
 
+        </div>
         <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
           <button  className='choiceButtons' onClick={this.startGame} value='1' >Play Game</button>
         </div>
@@ -171,7 +195,7 @@ export default class Game extends React.Component {
               {/* map this.questions as this.questions populate on each round start */}
               <div className='choices'>
                 {/*button on click function that checks the button.event.value to the levelData.track_name if != then wrong, if == TRUE then correct, then run next round*/}
-                {this.answers.map((choice, i) => <button key={i} className='choiceButtons' name={choice} onClick={this.handleChoice}>{choice}</button>)}
+                {this.state.answers.map((choice, i) => <button key={i} className='choiceButtons' name={choice} onClick={this.handleChoice}>{choice}</button>)}
               </div>
             </div> {/* end of questions */}
           </div> {/* end of stagingArea */}
