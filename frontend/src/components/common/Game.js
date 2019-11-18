@@ -140,7 +140,7 @@ export default class Game extends React.Component {
     var progbar = {
       width: this.state.width + 'vw'
     }
-    if (!this.state.gameData) return null
+    if (!this.state) return null
     return (
       <>
         <div className='hidden'> {/* div where the music plays */}

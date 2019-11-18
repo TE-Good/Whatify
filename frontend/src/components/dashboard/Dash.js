@@ -7,10 +7,8 @@ export default class Dash extends React.Component {
     this.play = this.play.bind(this)
     this.state = {
       user: {
-
       }
-    }
-    
+    }   
   }
 
   componentDidMount() {
