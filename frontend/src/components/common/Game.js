@@ -20,115 +20,9 @@ export default class Game extends React.Component {
           track_in_album: '',
           track_album_art: ''
         }
-      ]
+      ],
+      collections: []
     }
-    this.collections =
-      [
-        {
-          track_id: '1HiaZTm2nGQL4wtnJLPNV0',
-          track_name: 'Street Player - 2003 Remaster',
-          track_artist: 'Chicago',
-          track_preview: 'https://p.scdn.co/mp3-preview/736a4e877b104894de0fb3963e1b26373eecd2f1?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Chicago 13 (Expanded & Remastered)',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2735aad49c2c9e815064b448af3'
-        },
-        {
-          track_id: '52bpTnhwrv0ly6Py4uzDon',
-          track_name: 'Charlie Sheen vs. Henry Rollins',
-          track_artist: 'Various Artists',
-          track_preview: 'https://p.scdn.co/mp3-preview/1543df6fb9d5e822d73fc995270bb1f615fd9251?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'The Switcheroo Series',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2735d78f381fa21ecb0e10a9226'
-        },
-        {
-          track_id: '4u9f8hqstB7iITDJNzKhQx',
-          track_name: 'My Generation - Stereo Version',
-          track_artist: 'The Who',
-          track_preview: 'https://p.scdn.co/mp3-preview/190ce50d7bc21852d7b0545efa58f48fd88ddfc2?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'My Generation',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2736fda800d179e37c25646ca61'
-        },
-        {
-          track_id: '4J7GZ0QWuLsbL94nNZyn7S',
-          track_name: 'Husk',
-          track_artist: 'Black Foxxes',
-          track_preview: 'https://p.scdn.co/mp3-preview/705fcd0804c738c9f8a908f0253d9637d68a41bb?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'I\'m Not Well',
-          track_album_art: 'https://i.scdn.co/image/15d956246738653e20fd05ca732b33ea54ec62e9'
-        },
-        {
-          track_id: '20DcrlNK0NcRknbX4wcEO4',
-          track_name: 'Luchini AKA This Is It',
-          track_artist: 'Camp Lo',
-          track_preview: 'https://p.scdn.co/mp3-preview/1cfb0cb176d4459860bd7c84b1a39d9c36a0b771?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Uptown Saturday Night',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b27327608b688554d3cf9b4492ef'
-        },
-        {
-          track_id: '0LYoVYuXzcfykyVzaydE9D',
-          track_name: 'Summer of Luv',
-          track_artist: 'Fizzy Blood',
-          track_preview: 'https://p.scdn.co/mp3-preview/5c734567eaac9e90034f9448aacc2a5c8ff80c03?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Summer Of Luv',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273461ecebc2f33b4f82ca69e92'
-        },
-        {
-          track_id: '70XfsHxO5SgL4ecXDvG0Np',
-          track_name: 'What You Need',
-          track_artist: 'Yung Bae',
-          track_preview: 'https://p.scdn.co/mp3-preview/4969b5806a3c1773c496f8731b3fdd5484f76fac?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Bae 5',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273c8954d7d5c9deb29f1f77b08'
-        },
-        {
-          track_id: '37tqP5tmzFPFbr4Lf0I9zL',
-          track_name: 'Grange',
-          track_artist: 'Hockey Dad',
-          track_preview: 'https://p.scdn.co/mp3-preview/41fe4ab740ac1cf9f13d40851467084af86a4944?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Boronia',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2731923485e78ab87ce9dd916c0'
-        },
-        {
-          track_id: '0DGzkmXGT5jrqSjaJ1EyL2',
-          track_name: 'Kaleidoscope',
-          track_artist: 'Delta Heavy',
-          track_preview: 'https://p.scdn.co/mp3-preview/ea686c49bb5942a456b9110883a3113228af764a?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Kaleidoscope',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273853db20970a43adfa773ede1'
-        },
-        {
-          track_id: '1Op47dMLD73On4rNNNU3AW',
-          track_name: 'Main Theme of Final Fantasy VII (Final Fantasy VII)',
-          track_artist: 'Nobuo Uematsu',
-          track_preview: 'https://p.scdn.co/mp3-preview/6862046b2d377678cd847dc8ba5df9cb433462a5?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Distant Worlds II: More Music from Final Fantasy',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273004673484553b6077815df6c'
-        },
-        {
-          track_id: '0yeKU96NXwAvJSU4hWzxAv',
-          track_name: 'The Warmth',
-          track_artist: 'Fat Night',
-          track_preview: 'https://p.scdn.co/mp3-preview/8d980d3d45010cc8eb60dc853810eb0e97c950d7?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Fat Night',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273bf71d69cb7a92aed5cedc013'
-        },
-        {
-          track_id: '3A6e9UyMSrVRc2i9TqVGep',
-          track_name: 'Inspire',
-          track_artist: 'Above & Beyond',
-          track_preview: 'https://p.scdn.co/mp3-preview/1917ee859c7ba9690fc47865264fdafac4538078?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'Anjunabeats Volume 13',
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b2732558ea897478ce2c3710d319'
-        },
-        {
-          track_id: '4EyPadLFhtWojU7mkT5hqT',
-          track_name: 'Avalanche',
-          track_artist: 'Bring Me The Horizon',
-          track_preview: 'https://p.scdn.co/mp3-preview/75ae197055535c2489b7e46a139ffc42c123e0ec?cid=af12ae61b9ee42db83fc4b445ff51b0a',
-          track_in_album: 'That\'s The Spirit', // look into apsrophieshasdasdafg
-          track_album_art: 'https://i.scdn.co/image/ab67616d0000b273736145b97bab8fa92cb6113f'
-        }
-      ]
 
     this.round = 0
     this.levelData = this.state.gameData[this.round]
@@ -149,17 +43,33 @@ export default class Game extends React.Component {
   }
 
   componentDidMount() {
-    const tracksInPlay = []
-    for (let i = 0; i < this.gameLength; i++) {
-      tracksInPlay.push(this.collections[[(Math.ceil(Math.random() * Math.ceil(this.collections.length - 1)))]])
-    }
-    this.setState({ gameData: [...this.state.gameData, ...tracksInPlay] })
-    this.startRound()
+    axios.get('api/retrieve')
+      .then(res => this.setState({ username: res.data }))
+      .then(() => this.secondMount())
+  }
+
+  secondMount() {
+    axios.get('api/usersongs')
+      .then(res => {
+        const data = res.data
+        console.log(data)
+        const newdata = data.filter(song => song.owner === this.state.username)
+        console.log(newdata)
+        this.setState({ collections: newdata })
+      })
+      .then(() => {
+        const tracksInPlay = []
+        for (let i = 0; i < this.gameLength; i++) {
+          tracksInPlay.push(this.state.collections[[(Math.ceil(Math.random() * Math.ceil(this.state.collections.length - 1)))]])
+        }
+        this.setState({ gameData: [...this.state.gameData, ...tracksInPlay] })
+        this.startRound()
+      })
   }
 
   handleAnswers() {
     this.answers = this.answers.map(() => (
-      this.collections[(Math.ceil(Math.random() * Math.ceil(this.collections.length - 1)))].track_name)
+      this.state.collections[(Math.ceil(Math.random() * Math.ceil(this.state.collections.length - 1)))].track_name)
     )
     if (!this.answers.includes(this.state.gameData[this.round].track_name)) {
       this.answers[(Math.ceil(Math.random() * Math.ceil(this.answers.length - 1)))] = this.state.gameData[this.round].track_name
@@ -226,6 +136,7 @@ export default class Game extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     var progbar = {
       width: this.state.width + 'vw'
     }

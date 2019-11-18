@@ -16,7 +16,7 @@ export default class Dash extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       axios.get('api/retrieve')
-        .then(res => this.setState({ user: res.data }))
+        .then(res => this.setState({ user: { username: res.data } }))
     }, 500)
   }
 
@@ -34,6 +34,7 @@ export default class Dash extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     if (!this.state) return null
     return (
       <div>
