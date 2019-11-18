@@ -12,8 +12,7 @@ export default class Game extends React.Component {
       username: 'nuclearsheep',
       answers: ['a', 'b', 'c', 'd'],
       gameData: [
-        { //empty index [0] prevents audio from starting as iframe will auto load data in state
-          //game starts on index [1]. To have game auto play, delete this empty object
+        { //empty index [0] is to prevents audio from starting as iframe will auto load data in state
           track_id: '',
           track_name: '',
           track_artist: '',
@@ -28,7 +27,10 @@ export default class Game extends React.Component {
     this.round = 0
     this.levelData = this.state.gameData[this.round]
     this.time = 30000
-   
+    this.uniqueCounter = []    
+    this.timer = null
+    this.result = null
+    this.gameLength = 10
 
     this.startRound = this.startRound.bind(this)
     this.nextRound = this.nextRound.bind(this)
@@ -37,9 +39,7 @@ export default class Game extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this)
     this.handleChoice = this.handleChoice.bind(this)
     this.startGame = this.startGame.bind(this)
-    this.timer = null
-    this.result = null
-    this.gameLength = 10
+    
     //gamestate is either loading, start, play or end
   }
 
@@ -47,6 +47,16 @@ export default class Game extends React.Component {
     axios.get('api/retrieve')
       .then(res => this.setState({ username: res.data }))
       .then(() => this.secondMount())
+  }
+
+  numbers() {
+    var arr = []
+    while (arr.length < this.gameLength) {
+      var r = Math.ceil(Math.random() * this.state.collections.length) - 1
+      if (arr.indexOf(r) === -1) arr.push(r)
+    }
+    console.log('selections for the round', arr.sort((a,b) => a - b))
+    return this.uniqueCounter = arr
   }
 
   secondMount() {
@@ -59,12 +69,16 @@ export default class Game extends React.Component {
         this.setState({ collections: newdata })
       })
       .then(() => {
+        this.numbers()
         const tracksInPlay = []
         for (let i = 0; i < this.gameLength; i++) {
-          tracksInPlay.push(this.state.collections[[(Math.ceil(Math.random() * Math.ceil(this.state.collections.length - 1)))]])
+          // tracksInPlay.push(this.state.collections[[(Math.ceil(Math.random() * Math.ceil(this.state.collections.length - 1)))]])
+          tracksInPlay.push(this.state.collections[this.uniqueCounter[i]])
+
         }
         this.setState({ gameData: [...this.state.gameData, ...tracksInPlay] })
         this.startRound()
+ 
       })
   }
 
