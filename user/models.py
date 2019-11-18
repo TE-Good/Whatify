@@ -8,6 +8,7 @@ class Song(models.Model):
     track_preview = models.CharField(max_length=300)
     track_in_album = models.CharField(max_length=200, unique=False)
     track_album_art = models.CharField(max_length=200, unique=False)
+    owner = models.CharField(max_length=200, unique=False, default='')
 
 class Collections(models.Model):
     SpotifyUser_username_id = models.CharField(max_length=500, default='')

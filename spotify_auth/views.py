@@ -13,6 +13,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
 
+from user.serializers import SpotifyUserSerializer, SongSerializer
+
 spotify_client_id = os.getenv('SPOTIPY_CLIENT_ID')
 print(spotify_client_id)
 spotify_client_secret = os.getenv('SPOTIPY_CLIENT_SECRET')
@@ -89,13 +91,20 @@ class RetrieveUser(APIView):
         profile_data = authed_spotify.me()
         #if profilr_data['images] is true, then set img = profile_data['images'][0]['url'], else, return none
         image = profile_data['images'][0]['url'] if profile_data['images'] else 'https://news.artnet.com/app/news-upload/2016/03/kanye-west-crop-e1458141735868-256x256.jpg'
+
+        payload = {
+        'displayname': profile_data.get('display_name'),
+        'username': profile_data.get('id'),
+        'image': image,
+        'songs': []
+        }
         # if (not image):
         #   image = 'No image'
-        payload = {'displayname': profile_data.get('display_name'),
-        'username': profile_data.get('id'),
-        'image': image
-        }
-        r = requests.post('http://localhost:8000/db/user', data=payload)
+        createdSpotifyUser = SpotifyUserSerializer(data=payload)
+        if createdSpotifyUser.is_valid():
+          createdSpotifyUser.save()
+        
+        # r = requests.post('http://localhost:8000/db/user', data=payload)
 
 
       
@@ -116,14 +125,21 @@ class RetrieveUser(APIView):
               "track_artist": track_artist,
               "track_preview": track_preview,
               "track_in_album": track_in_album,
-              "track_album_art": track_album_art
+              "track_album_art": track_album_art,
+              "owner": profile_data.get('id')
             }
             collections_payload = {
                 'SpotifyUser_username_id': profile_data.get('id'),
                 'Song_track_id': track_id
             }
 
-            r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
+
+            createdSong = SongSerializer(data=song_payload)
+            print(createdSong)
+            if createdSong.is_valid():
+              createdSong.save()
+
+            # r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
             r = requests.post('http://localhost:8000/db/collections', data=collections_payload)
 
         # print('track id ', 'song id = ', track_id)

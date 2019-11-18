@@ -4,23 +4,23 @@ from .models import SpotifyUser, Song, Collections
 
 class SongSerializer(serializers.ModelSerializer):
 
-    def create(self, data): 
+    # def create(self, data): 
 
-        song = Song(**data)
-        song.save()
-        return song
+    #     song = Song(**data)
+    #     song.save()
+    #     return song
 
     class Meta:
         model = Song
-        fields = ('track_id', 'track_name', 'track_name', 'track_artist', 'track_preview', 'track_in_album', 'track_album_art')
+        fields = ('track_id', 'track_name', 'track_artist', 'track_preview', 'track_in_album', 'track_album_art', 'owner')
 
 class CollectionsSerializer(serializers.ModelSerializer):
     
-    def create(self, data):
+    # def create(self, data):
 
-        collection = Collections(**data)
-        collection.save()
-        return collection
+    #     collection = Collections(**data)
+    #     collection.save()
+    #     return collection
 
     class Meta:
         model = Collections
@@ -32,9 +32,12 @@ class SpotifyUserSerializer(serializers.ModelSerializer):
 
     def create(self, data): 
 
-        user = SpotifyUser(**data) 
-        user.save() 
-        return user
+        songs_data = data.pop('songs')
+        spotifyUser = SpotifyUser(**data)
+        songs = [Song.objects.get(**song_data) for song_data in songs_data]
+        spotifyUser.save()
+        spotifyUser.songs.set(songs)
+        return spotifyUser
 
     class Meta:
         model = SpotifyUser
