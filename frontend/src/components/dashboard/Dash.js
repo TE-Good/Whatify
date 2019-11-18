@@ -12,10 +12,8 @@ export default class Dash extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      axios.get('api/retrieve')
-        .then(res => this.setState({ user: { username: res.data } }))
-    }, 500)
+    axios.get('api/retrieve')
+      .then(res => this.setState({ user: { username: res.data } }))
   }
 
 
@@ -35,14 +33,21 @@ export default class Dash extends React.Component {
     console.log(this.state)
     if (!this.state) return null
     return (
-      <div>
-        Welcome back, {this.state.user.username}!
-        <form onSubmit={this.logout}>
-          <button type='submit'>Log out</button>
-        </form>
-        <form onSubmit={this.play}>
-          <button type='submit'>Play</button>
-        </form>
+      <div className='fullBleed dash'>
+        <h1 className='animated fadeIn delay-2s'>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : '' }</h1>
+        <h2 className='h22 animated fadeIn delay-2s'>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2>
+
+        
+        <div className={this.state.user.username ? 'dashRight slow fadeIn' : 'hidden'}>
+          <button className='choiceButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button>
+          <button className='choiceButtons animated fadeIn delay-2s' onClick={this.play}>Play</button>
+          <button className='choiceButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
+
+
+        </div>
+
+
+
       </div>
     )
   }

@@ -21,12 +21,29 @@ export default class Home extends React.Component{
 
   render(){
     return (
-      <div className='fp-login'>
-        <form onSubmit={this.handleSubmit} className='container'>
-          <h3>Log in to play!</h3>
-          <button>Log in</button>
-        </form>
+      <>
+      <div className='fp-login' onClick={this.handleSubmit}>
+
+        <h5> Connect To Spotify To Start </h5>
+
       </div>
+
+      <div className='fp-login2' onClick={this.handleSubmit}>
+
+        <h5>WHATIFY</h5>
+        <h5> Your Personal Music Quiz </h5>
+
+      </div>
+
+        
+
+        <div className='fullBleed'>
+          <div className=''>
+            <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
+            <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
+          </div>
+        </div>
+      </>
     )
   }
 }

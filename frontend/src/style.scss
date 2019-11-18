@@ -1,14 +1,86 @@
+@import './animate.scss';
+
 
 .container{
   padding: 10px;
   margin: 10px;
 }
 
-.fp-login{
-  border: 2px solid blue;
-  text-align: center;
-  max-width: 50vw;
+.fpBack {
+  width: 120%;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+  margin: -24px;
+  overflow: hidden;
 }
+.fullBleed {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.fp-login{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 13.33%;
+  margin-left: 50px;
+  z-index: 2;
+  width: 400px;
+  height: 70vh;
+  border: 4px solid whitesmoke;
+  border-radius: 14px;
+}
+.fp-login2{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 25%;
+  right: 0px;
+  margin-right: 50px;
+  z-index: 3;
+  width: 400px;
+  height: 50vh;
+  // border: 4px solid whitesmoke;
+  border-radius: 4px;
+}
+h5 {
+  color: white;
+  font-weight: 800;
+}
+
+// DASHBOARD
+
+.dashRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 15%;
+  height: 70vh;
+  right: 5%;
+  width: 520px;
+  margin: 2px;
+  // border: 2px solid blue;
+}
+.h22 {
+  text-align: left;
+}
+.dash{
+  height: 100%;
+  background-image: url('https://www.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg');
+  background-position: top;
+  padding: 20px;
+  
+}
+
+
 .hidden{
   //hidden styles main
   display: none;
@@ -66,7 +138,7 @@ h2, h3 {
 .choiceButtons{
   background-color: white;
   width: 480px;
-  margin: auto;
+  margin: 10px;
   margin-top: 8px;
   height: 50px;
 }

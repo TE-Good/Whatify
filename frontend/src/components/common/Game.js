@@ -116,6 +116,10 @@ export default class Game extends React.Component {
     this.nextRound()
     this.handleAnswers()
   }
+  cancelGame(e){
+    e.preventDefault()
+    window.location.assign('/dash')
+  }
 
   countdownTimer() {
     this.timer = setInterval(() => {
@@ -196,6 +200,7 @@ export default class Game extends React.Component {
         </div>
         <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
           <button  className='choiceButtons' onClick={this.startGame} value='1' >Play Game</button>
+          <button  className='choiceButtons' onClick={this.cancelGame} value='1' >Cancel</button>
         </div>
 
 

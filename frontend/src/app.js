@@ -9,6 +9,7 @@ import Play from './components/common/Game'
 
 import 'normalize.css'
 import './style.scss'
+import 'animate.css'
 
 const App = () => (
   <BrowserRouter>
