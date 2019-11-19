@@ -107,7 +107,7 @@ export default class Game extends React.Component {
   startRound(n) {
     clearInterval(this.timer)
     console.log('Update recieved, updating data to round ', n)
-    this.round === 0 ? this.setState({ gameState: 'start' }) : null 
+    this.round === 0 ? setTimeout(() => this.setState({ gameState: 'start' }), 3000) : null 
   }
 
   startGame() {
@@ -194,13 +194,13 @@ export default class Game extends React.Component {
         <div className={`${this.state.gameState === 'loading' ? '' : 'hidden'}`}>
           <h3>Loading game...</h3>
           <center>
-            <img src='https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif'></img>  
+            <img src='https://i.imgur.com/s2jF9xM.gif'></img>  
           </center>
 
         </div>
         <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
-          <button  className='choiceButtons' onClick={this.startGame} value='1' >Play Game</button>
-          <button  className='choiceButtons' onClick={this.cancelGame} value='1' >Cancel</button>
+          <button  className='dashButtons' onClick={this.startGame} value='1' ><p>Play Game</p></button>
+          <button  className='dashButtons' onClick={this.cancelGame} value='1' ><p>Cancel</p></button>
         </div>
 
 
@@ -225,7 +225,7 @@ export default class Game extends React.Component {
         </div> {/* end of stage */}
 
 
-        <div className={`${this.state.gameState === 'end' ? 'stage' : 'hidden'}`}>
+        <div className={`${this.state.gameState === 'end' ?  'stage' : 'hidden'}`}>
           <h2>Round {this.round}</h2>
           {this.result ? <h3>Correct!</h3> : <h3>Wrong!</h3>}
           {this.round ? <div className='endRound'>

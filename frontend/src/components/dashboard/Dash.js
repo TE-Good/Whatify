@@ -6,14 +6,19 @@ export default class Dash extends React.Component {
     super()
     this.play = this.play.bind(this)
     this.state = {
+      dashState: '', // '' or ready
       user: {
       }
     }   
   }
 
   componentDidMount() {
-    axios.get('api/retrieve')
-      .then(res => this.setState({ user: { username: res.data } }))
+    setTimeout(() => {
+      axios.get('api/retrieve')
+        .then(res => this.setState({ user: { username: res.data } }))
+        .then((this.setState({ dashState: 'ready' })))
+    }, 3000)
+      
   }
 
 
@@ -33,9 +38,13 @@ export default class Dash extends React.Component {
     console.log(this.state)
     if (!this.state) return null
     return (
-      <div className='fullBleed dash'>
-        <h1 className='animated fadeIn delay-2s'>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : '' }</h1>
-        <h2 className='h22 animated fadeIn delay-2s'>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2>
+
+      <div className='fullBleed dash animated fadeIn more-slow'>
+
+        <div>{this.state.dashState !== 'ready' ? <img src='https://i.imgur.com/s2jF9xM.gif'></img>  : null}</div>
+        
+        <h1 className={this.state.user.username ? 'animated fadeIn delay-1s' : 'hidden'}>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : '' }</h1>
+        <h2 className={this.state.user.username ? 'h22 animated fadeIn delay-1s' : 'hidden'}>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2>
 
         
         <div className={this.state.user.username ? 'dashRight slow fadeIn' : 'hidden'}>

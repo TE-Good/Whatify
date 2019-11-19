@@ -230,9 +230,10 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: #222;
-  border-color: #888;
-  outline: 1; }
+  // color: #222;
+  // border-color: #888;
+  // outline: 1; 
+}
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -484,6 +485,18 @@ h2 {
   height: 100vh;
   background-image: url('https://i.imgur.com/8452IOt.png');
   background-size: cover;
+}
+.dashButtons{
+  background-image: url('https://i.imgur.com/S4GgndC.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border:1px solid rgba(0, 0, 0, 0);
+  background-position: center;
+  min-height: 120px;
+  min-width: 240px;
+  color: black;
+  font-size: 28px;
+
 }
 
 .fpBack {

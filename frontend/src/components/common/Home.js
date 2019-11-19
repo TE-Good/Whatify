@@ -4,6 +4,9 @@ import axios from 'axios'
 export default class Home extends React.Component {
   constructor() {
     super()
+    this.state = {
+      homeState: '' // '' or 'login'
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -12,17 +15,21 @@ export default class Home extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     console.log('submitted')
-    axios.get('/api/login')
-      .then(res => {
-        console.log(res.data)
-        window.location.assign(res.data)
-      })
+    this.setState({ homeState: 'login' })
+    setTimeout(() => {
+      axios.get('/api/login')
+        .then(res => {
+          console.log(res.data)
+          window.location.assign(res.data)
+        })
+    }, 500)
+
   }
 
   render() {
     return (
       <>
-        <div className='bg-image'>
+        <div className={this.state.homeState != 'login' ? 'bg-image' : 'bg-image animated fadeOut'}>
           <div>
             <h1>WHATIFY?</h1>
             <h2> Your Personal Music Quiz </h2>
