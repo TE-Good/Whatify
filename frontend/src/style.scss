@@ -473,7 +473,6 @@ h2 {
   padding: 10px;
   margin: 10px;
 }
-
 .bg-image{
   width: 100vw;
   height: 100vh;
@@ -486,6 +485,7 @@ h2 {
   background-image: url('https://i.imgur.com/8452IOt.png');
   background-size: cover;
 }
+
 .dashButtons{
   background-image: url('https://i.imgur.com/S4GgndC.png');
   background-size: contain;
@@ -496,18 +496,19 @@ h2 {
   min-width: 240px;
   color: black;
   font-size: 28px;
-
 }
 
 .fpBack {
   width: auto;
   height: 100%;
 }
+
 .fullBleed {
   z-index: 1;
   width: auto;
   height: 100%;
 }
+
 
 .fp-wrapper{
   display: flex;
@@ -517,16 +518,9 @@ h2 {
   margin:150px 125px ;
 }
 
-.fp-login{
-  background-image: url('https://i.imgur.com/P6U1Qvj.png');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  display: flex;
-  position: absolute;
-  margin: 450px 310px;
-  width: 400px;
-  height: 30vh;
+h4 {
+  color: #555;
+  font-size: 5rem;
 }
 
 .center {
@@ -556,18 +550,12 @@ h2 {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: absolute;
-  top: 13.33%;
-  margin-left: 50px;
-  z-index: 2;
+  margin-top: 450px;
+  margin-left: 310px;
   width: 400px;
-  height: 55vh;
-  border-radius: 14px;
-  color: #555;;
+  height: 30vh;
 }
 
 
@@ -664,14 +652,19 @@ h5 {
 
 }
 .countDown{
+  z-index: 2;
+  bottom: 0px;
+  position: fixed;
   min-height: 10px;
   background-color: rgb(6, 128, 204);
   padding: 0px;
-  transform: translateY(-10px);
+  transform: translateY(10px);
   transition: linear 0.2s;
 }
 .countDownEmpty{
-  position: relative;
+  z-index: 1;
+  bottom: 0px;
+  position: fixed;
   width: 100vw;
   min-height: 4px;
   background-color: rgb(166, 182, 192);

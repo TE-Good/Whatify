@@ -23,7 +23,6 @@ export default class Home extends React.Component {
           window.location.assign(res.data)
         })
     }, 500)
-
   }
 
   render() {
