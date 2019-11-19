@@ -1,209 +1,37 @@
 @import './animate.scss';
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+// @import url('../src/assets/masking.png');
+
+// /*
+// * Skeleton V2.0.4
+// * Copyright 2014, Dave Gamache
+// * www.getskeleton.com
+// * Free to use under the MIT license.
+// * http://www.opensource.org/licenses/mit-license.php
+// * 12/29/2014
+// */
 
 
-.container{
-  padding: 10px;
-  margin: 10px;
-}
-
-.fpBack {
-  width: 120%;
-  filter: blur(12px);
-  -webkit-filter: blur(12px);
-  margin: -24px;
-  overflow: hidden;
-}
-.fullBleed {
-  position: absolute;
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.fp-login{
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 13.33%;
-  margin-left: 50px;
-  z-index: 2;
-  width: 400px;
-  height: 70vh;
-  border: 4px solid whitesmoke;
-  border-radius: 14px;
-}
-.fp-login2{
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 25%;
-  right: 0px;
-  margin-right: 50px;
-  z-index: 3;
-  width: 400px;
-  height: 50vh;
-  // border: 4px solid whitesmoke;
-  border-radius: 4px;
-}
-h5 {
-  color: white;
-  font-weight: 800;
-}
-
-// DASHBOARD
-
-.dashRight{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  position: absolute;
-  bottom: 15%;
-  height: 70vh;
-  right: 5%;
-  width: 520px;
-  margin: 2px;
-  // border: 2px solid blue;
-}
-.h22 {
-  text-align: left;
-}
-.dash{
-  height: 100%;
-  background-image: url('https://www.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg');
-  background-position: top;
-  padding: 20px;
-  
-}
+// /* Table of contents
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// - Grid
+// - Base Styles
+// - Typography
+// - Links
+// - Buttons
+// - Forms
+// - Lists
+// - Code
+// - Tables
+// - Spacing
+// - Utilities
+// - Clearing
+// - Media Queries
+// */
 
 
-.hidden{
-  //hidden styles main
-  display: none;
-}
-.stage{
-  // border: 2px solid red;
-  display: flex;
-  flex-direction: column;
-  width: 85vw;
-  height: 640px;
-  margin: auto;
-  margin-top: 8px;
-}
-.stagingArea{
-  // border: 2px solid greenyellow;
-  width: 60vw;
-  height: 45vh;
-  margin: auto;
-}
-.choices{
-  display: flex;
-  flex-direction: column;
-}
-.countDown{
-  min-height: 10px;
-  background-color: rgb(6, 128, 204);
-  padding: 0px;
-  transform: translateY(-10px);
-  transition: linear 0.2s;
-}
-.countDownEmpty{
-  position: relative;
-  width: 100vw;
-  min-height: 4px;
-  background-color: rgb(166, 182, 192);
-  padding: 3px;
-}
-h2, h3 {
-  text-align: center;
-}
-.endRound{
-  width: 60vw;
-  height: 45vh;
-  display: flex;
-  flex-direction: column;
-  // border: 2px solid rgba(128, 0, 128, 0.288);
-  margin: auto;
-  align-items: center;
-  padding-bottom: 2px;
-}
-.roundImg{
-  max-width: 320px;
-  margin: auto;
-}
-.choiceButtons{
-  background-color: white;
-  width: 480px;
-  margin: 10px;
-  margin-top: 8px;
-  height: 50px;
-}
-.flex-row{
-  display: flex;
-}
-.flex-right{
-  display:flex;
-  flex-direction: column;
-  min-width: 50%;
-  min-height: 300px;
-  padding-left: 12px;
-}
-.endScreenImg{
-  max-width: 180px;
-  max-height: 180px;
-}
-.endScreen{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  // justify-content: space-evenly;
-  min-width: 70vw;
-  min-height: 40vh;
-  overflow: scroll;
-
-  }
-  .resultsCard{
-    max-width: 30vw;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px;
-  }
-
-
-/*
-* Skeleton V2.0.4
-* Copyright 2014, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 12/29/2014
-*/
-
-
-/* Table of contents
-––––––––––––––––––––––––––––––––––––––––––––––––––
-- Grid
-- Base Styles
-- Typography
-- Links
-- Buttons
-- Forms
-- Lists
-- Code
-- Tables
-- Spacing
-- Utilities
-- Clearing
-- Media Queries
-*/
-
-
-/* Grid
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+// /* Grid
+// –––––––––––––––––––––––––––––––––––––––––––––––––– */
 // .container {
 //   position: relative;
 //   width: 100%;
@@ -211,11 +39,10 @@ h2, h3 {
 //   margin: 0 auto;
 //   padding: 0 20px;
 //   box-sizing: border-box; }
-.column,
-.columns {
-  width: 100%;
-  float: left;
-  box-sizing: border-box; }
+// .column, .columns {
+//   width: 100%;
+//   float: left;
+//   box-sizing: border-box; }
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
@@ -592,3 +419,197 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
+body {
+  font-family: 'Permanent Marker', cursive;
+}
+
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 15rem;
+}
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
+  color: #555;
+  font-size: 5rem;
+}
+
+.container{
+  padding: 10px;
+  margin: 10px;
+}
+
+.bg-image{
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1459233313842-cd392ee2c388?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80);
+  background-size: 100vw;
+}
+
+.fpBack {
+  width: auto;
+  height: 100%;
+}
+.fullBleed {
+  z-index: 1;
+  width: auto;
+  height: 100%;
+}
+
+.fp-login{
+  background-image: url('https://i.imgur.com/P6U1Qvj.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // position: absolute;
+  top: 13.33%;
+  margin-left: 50px;
+  z-index: 2;
+  width: 400px;
+  height: 55vh;
+  border-radius: 14px;
+  color: #555;;
+}
+.fp-login2{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 25%;
+  right: 0px;
+  margin-right: 50px;
+  z-index: 3;
+  width: 400px;
+  height: 50vh;
+  // border: 4px solid whitesmoke;
+  border-radius: 4px;
+}
+h5 {
+  color: white;
+  font-weight: 800;
+}
+
+// DASHBOARD
+
+.dashRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 15%;
+  height: 70vh;
+  right: 5%;
+  width: 520px;
+  margin: 2px;
+  // border: 2px solid blue;
+}
+.h22 {
+  text-align: left;
+}
+.dash{
+  height: 100%;
+  background-image: url('https://www.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg');
+  background-position: top;
+  padding: 20px;
+  
+}
+
+
+.hidden{
+  //hidden styles main
+  display: none;
+}
+.stage{
+  // border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  height: 640px;
+  margin: auto;
+  margin-top: 8px;
+}
+.stagingArea{
+  // border: 2px solid greenyellow;
+  width: 60vw;
+  height: 45vh;
+  margin: auto;
+}
+.choices{
+  display: flex;
+  flex-direction: column;
+}
+.countDown{
+  min-height: 10px;
+  background-color: rgb(6, 128, 204);
+  padding: 0px;
+  transform: translateY(-10px);
+  transition: linear 0.2s;
+}
+.countDownEmpty{
+  position: relative;
+  width: 100vw;
+  min-height: 4px;
+  background-color: rgb(166, 182, 192);
+  padding: 3px;
+}
+h2, h3 {
+  text-align: center;
+}
+.endRound{
+  width: 60vw;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  // border: 2px solid rgba(128, 0, 128, 0.288);
+  margin: auto;
+  align-items: center;
+  padding-bottom: 2px;
+}
+.roundImg{
+  max-width: 320px;
+  margin: auto;
+}
+.choiceButtons{
+  background-color: white;
+  width: 480px;
+  margin: 10px;
+  margin-top: 8px;
+  height: 50px;
+}
+.flex-row{
+  display: flex;
+}
+.flex-right{
+  display:flex;
+  flex-direction: column;
+  min-width: 50%;
+  min-height: 300px;
+  padding-left: 12px;
+}
+.endScreenImg{
+  max-width: 180px;
+  max-height: 180px;
+}
+.endScreen{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  // justify-content: space-evenly;
+  min-width: 70vw;
+  min-height: 40vh;
+  overflow: scroll;
+
+  }
+  .resultsCard{
+    max-width: 30vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+

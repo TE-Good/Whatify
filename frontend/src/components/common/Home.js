@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 
-export default class Home extends React.Component{
-  constructor(){
+export default class Home extends React.Component {
+  constructor() {
     super()
 
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault()
     console.log('submitted')
     axios.get('/api/login')
@@ -19,30 +19,32 @@ export default class Home extends React.Component{
       })
   }
 
-  render(){
+  render() {
     return (
       <>
-      <div className='fp-login' onClick={this.handleSubmit}>
-
-        <h5> Connect To Spotify To Start </h5>
-
-      </div>
-
-      <div className='fp-login2' onClick={this.handleSubmit}>
-
-        <h5>WHATIFY</h5>
-        <h5> Your Personal Music Quiz </h5>
-
-      </div>
-
-        
-
-        <div className='fullBleed'>
-          <div className=''>
-            <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
-            <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
+        <div className='bg-image'>
+          <div>
+            <h1>WHATIFY?</h1>
+            <h2> Your Personal Music Quiz </h2>
+          </div>
+          <div className='fp-login' onClick={this.handleSubmit}>
           </div>
         </div>
+
+
+
+        {/* <div className='fp-login' onClick={this.handleSubmit}>
+        <h5> Connect To Spotify To Start </h5>
+      </div>
+      <div className='fp-login2' onClick={this.handleSubmit}>
+        <h5>WHATIFY</h5>
+        <h5> Your Personal Music Quiz </h5>
+      </div>
+        <div className='fullBleed'>
+          <div className=''>
+            <img className='fpBack' src='https://images.unsplash.com/photo-1459233313842-cd392ee2c388?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80'></img>
+          </div>
+        </div> */}
       </>
     )
   }
