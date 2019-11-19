@@ -41,7 +41,7 @@ export default class Dash extends React.Component {
 
       <div className='fullBleed dash animated fadeIn slow'>
 
-        <div>{this.state.dashState !== 'ready' ? <center><h3>Loading dashboard...</h3><img src='https://i.imgur.com/s2jF9xM.gif'></img></center> : <img className='animated fadeOut' src=''></img>}</div>
+        <div>{this.state.dashState !== 'ready' ? <center><img src='https://i.imgur.com/s2jF9xM.gif'></img><h2>Loading dashboard...</h2></center> : <img className='animated fadeOut' src=''></img>}</div>
         
         <h1 className={this.state.user.username ? 'animated fadeIn' : 'hidden'}>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : '' }</h1>
         <h2 className={this.state.user.username ? 'h22 animated fadeIn' : 'hidden'}>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2>
