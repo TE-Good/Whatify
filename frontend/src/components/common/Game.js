@@ -23,19 +23,21 @@ export default class Game extends React.Component {
       ],
       collections: []
     }
-
+  
     this.round = 0
     this.levelData = this.state.gameData[this.round]
     this.time = 30000
     this.uniqueCounter = []    
     this.timer = null
     this.result = null
-    this.gameLength = 5
+    this.gameLength = 10
     this.scoreSheet = []
     this.timeSheet = 0
     this.minMax = []
     this.min = 0
     this.max = 0
+    // this.sfx = new Audio('../../src/assets/radio.mp3')
+    
 
     this.startRound = this.startRound.bind(this)
     this.nextRound = this.nextRound.bind(this)
@@ -133,6 +135,7 @@ export default class Game extends React.Component {
   }
 
   nextRound() {
+    this.setState({ status: 'PLAYING' })
     if (this.round === this.gameLength) {
       console.log('finished game')
       this.setState({ gameState: 'endscreen' })
@@ -230,7 +233,7 @@ export default class Game extends React.Component {
           <div className='stagingArea'>
             <div className='questions'>
               {/* <h3></h3> */}
-              <div className=''><h2>What's the name of this track?</h2></div>
+              <div className=''><h2>What&apos;s the name of this track?</h2></div>
               {/* map this.questions as this.questions populate on each round start */}
               <div className='choices'>
                 {/*button on click function that checks the button.event.value to the levelData.track_name if != then wrong, if == TRUE then correct, then run next round*/}
@@ -260,8 +263,8 @@ export default class Game extends React.Component {
             <div className='flex-row'>
               <img className='roundImg' src={this.state.gameData[this.round].track_album_art}></img>
               <div className='flex-right'>
-                <em>Track: {this.state.gameData[this.round].track_name}</em>
-                <em>Artist: {this.state.gameData[this.round].track_artist}</em>
+                <em>{this.state.gameData[this.round].track_name}</em>
+                <em>{this.state.gameData[this.round].track_artist}</em>
                 <em>From The Album: {this.state.gameData[this.round].track_in_album}</em>
                 <br />
                 <em>You guessed this track in {parseFloat(30 - this.state.time / 1000).toFixed(2)} seconds!</em>
@@ -292,10 +295,6 @@ export default class Game extends React.Component {
 
           </div>
         </div>
-
-
-
-
       </div>
     )
   }
