@@ -163,6 +163,15 @@ export default class Game extends React.Component {
     }
   }
 
+  handleBack(e) {
+    e.preventDefault()
+    this.props.history.push('/dash')
+  }
+
+  handlePlayAgain() {
+    window.location.reload()
+  }
+  
   handleChoice(e) {
     console.log(e.target.name)
     if (e.target.name !== this.state.gameData[this.round].track_name) {
@@ -275,23 +284,50 @@ export default class Game extends React.Component {
           <button className='nextRound' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
         </div>
 
-        
-        <div className={`${this.state.gameState === 'endscreen' ? 'stagingArea' : 'hidden'}`}>
-          <h3>Your Score: {this.state.score}</h3>
-          <h3>Time Spent: {this.timeSheet.toFixed(2)} seconds</h3>
-        
+        <div className={`${this.state.gameState === 'endscreen' ? 'end-stage' : 'hidden'}`}>
+
 
           <div className='endScreen'>
-            {this.state.gameData.map((element, i) => (
-              element.track_name !== '' ?
+            <div className='end-screen-top'>
+              <div className='end-screen-top-one'>
+                <div className='end-screen-top-one-inner'>
+                  <button className='dashButtons' onClick={this.handleBack}>Back</button>
+                </div>
+                <div className='end-screen-top-one-inner'>
+                  <h1>Game Over</h1>
+                </div>
+                <div className='end-screen-top-one-inner'>
+                  <button className='dashButtons' onClick={this.handlePlayAgain}>Play Again</button>
+                </div>
+              </div>
+              <div className='end-screen-top-two'>
+                <h3>You scored {this.state.score} in {this.timeSheet.toFixed(2)} seconds</h3>
+              </div>
+            </div>
+            <div className='end-screen-bot'>
+              {this.state.gameData.map((element, i) => (
+                element.track_name !== '' ?
 
-                <div className='resultsCard' key={i}>
-                  <img className='endScreenImg' src={element.track_album_art}></img>
-                  <p>{element.track_name} by {element.track_artist}</p>
-                  <h2>{this.scoreSheet[i - 1] === 'true' ? '✔︎' : '✖︎'}</h2>
-                  <p>{this.minMax[i - 1]}</p>
-                </div> : null
-            ))}
+                  <div className='resultsCard' key={i}>
+                    <div className='image-wrapper'>
+                      <h2 className='end-game-check'>{this.scoreSheet[i - 1] === 'true' ? <p className='check'>✔︎</p> : <p className='cross'>✖︎</p>}</h2>
+                      <img className='endScreenImg' src={element.track_album_art}></img>
+                    </div>
+                    <div className='end-text-wrapper'>
+                      <div className='end-text-wrapper-one'>
+                        <p>{element.track_name}</p>
+                        <p>{element.track_artist}</p>
+                      </div>
+                      <div></div>
+                      <div className='end-text-wrapper-two'>
+                        {/* <p>Time Taken:</p> */}
+                        <p>{this.minMax[i - 1]} seconds</p>
+                      </div>
+                    </div>
+                  </div> : null
+              ))}
+
+            </div>
 
           </div>
         </div>
