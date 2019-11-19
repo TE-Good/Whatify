@@ -490,10 +490,12 @@ h2 {
   height: 100%;
 }
 
-.fp-login{
-  background-image: url('https://i.imgur.com/P6U1Qvj.png');
-  background-size: contain;
-  background-repeat: no-repeat;
+// .fp-login{
+//   background-image: url('https://i.imgur.com/P6U1Qvj.png');
+//   background-size: contain;
+//   background-repeat: no-repeat;
+// }
+
 .center {
   text-align: center;
   margin: auto;
@@ -507,6 +509,7 @@ h2 {
   margin: -24px;
   overflow: hidden;
 }
+ 
 .fullBleed {
   position: absolute;
   z-index: 1;
@@ -516,6 +519,9 @@ h2 {
 }
 
 .fp-login{
+  background-image: url('https://i.imgur.com/P6U1Qvj.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -529,6 +535,9 @@ h2 {
   border-radius: 14px;
   color: #555;;
 }
+
+
+
 .fp-login2{
   text-align: center;
   display: flex;
@@ -687,4 +696,4 @@ h2, h3 {
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
-  }}
+  }
