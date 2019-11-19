@@ -39,9 +39,9 @@ export default class Dash extends React.Component {
 
         
         <div className={this.state.user.username ? 'dashRight slow fadeIn' : 'hidden'}>
-          <button className='choiceButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button>
-          <button className='choiceButtons animated fadeIn delay-2s' onClick={this.play}>Play</button>
-          <button className='choiceButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
+          <button className='dashButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button>
+          <button className='dashButtons animated fadeIn delay-2s' onClick={this.play}>Play</button>
+          <button className='dashButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
 
 
         </div>

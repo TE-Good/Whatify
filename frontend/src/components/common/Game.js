@@ -181,7 +181,7 @@ export default class Game extends React.Component {
     }
     if (!this.state) return null
     return (
-      <>
+      <div className='bg-image2'>
         <div className='hidden'> {/* div where the music plays */}
           <iframe src={this.state.gameData[this.round].track_preview} allow='autoplay' id='player' />
         </div>
@@ -271,7 +271,7 @@ export default class Game extends React.Component {
 
 
 
-      </>
+      </div>
     )
   }
 }

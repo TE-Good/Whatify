@@ -477,7 +477,13 @@ h2 {
   width: 100vw;
   height: 100vh;
   background-image: url(https://images.unsplash.com/photo-1459233313842-cd392ee2c388?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80);
-  background-size: 100vw;
+  background-size: cover;
+}
+.bg-image2{
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://i.imgur.com/8452IOt.png');
+  background-size: cover;
 }
 
 .fpBack {
@@ -520,6 +526,7 @@ h2 {
 
 .fp-login{
   background-image: url('https://i.imgur.com/P6U1Qvj.png');
+  background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
@@ -577,8 +584,10 @@ h5 {
 }
 .dash{
   height: 100%;
-  background-image: url('https://www.123freevectors.com/wp-content/original/131396-light-color-polygonal-abstract-background-vector-illustration.jpg');
-  background-position: top;
+  background-image: url('https://i.imgur.com/8452IOt.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px;
   
 }
