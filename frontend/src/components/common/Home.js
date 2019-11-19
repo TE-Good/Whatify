@@ -22,13 +22,13 @@ export default class Home extends React.Component {
           console.log(res.data)
           window.location.assign(res.data)
         })
-    }, 500)
+    }, 400)
   }
 
   render() {
     return (
       <>
-        <div className='bg-image'>
+        <div className={this.state.homeState !== 'login' ? 'bg-image' : 'bg-image animated fadeOut fast'}>
           <div className='fp-wrapper'>
             <div className='fp-header'>
               <h1>WHATIFY?</h1>

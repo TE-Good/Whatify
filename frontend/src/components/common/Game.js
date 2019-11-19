@@ -45,7 +45,7 @@ export default class Game extends React.Component {
     this.handleChoice = this.handleChoice.bind(this)
     this.startGame = this.startGame.bind(this)
     
-    //gamestate is either loading, start, play or end
+    //gamestate is either loading, start, play or end, or first for first game for animations
   }
 
   componentDidMount() {
@@ -111,8 +111,9 @@ export default class Game extends React.Component {
   }
 
   startGame() {
-    this.setState({ gameState: 'play' })
+    this.setState({ gameState: 'first' })
     console.log(this.gameState)
+
     this.nextRound()
     this.handleAnswers()
   }
@@ -151,7 +152,12 @@ export default class Game extends React.Component {
       this.startRound(this.round)
       this.countdownTimer()
     }, 100)
-    return this.setState({ gameState: 'play' })
+    if (this.round === 1){
+      return this.setState({ gameState: 'first' })
+    } else {
+      // this.fadeOut()
+      return this.setState({ gameState: 'play' })
+    }
   }
 
   handleChoice(e) {
@@ -171,8 +177,13 @@ export default class Game extends React.Component {
     const roundTime = (parseFloat(30 - this.state.time / 1000).toFixed(2))
     this.timeSheet += parseFloat(roundTime)
     this.minMax.push(parseFloat(roundTime))
+    // this.fadeOut()
     return this.setState({ gameState: 'end' })
   }
+  // fadeOut(){
+  //   document.getElementById('game').classList.add('animated')
+  //   document.getElementById('game').classList.add('fadeOutLeft')
+  // }
 
   render() {
     // console.log(this.state)
@@ -186,15 +197,11 @@ export default class Game extends React.Component {
           <iframe src={this.state.gameData[this.round].track_preview} allow='autoplay' id='player' />
         </div>
 
-        <div > {/* this is the cowndown timer */}
-          <div className='countDownEmpty'></div>
-          <div className='countDown' style={progbar}></div>
-        </div>
-
         <div className={`${this.state.gameState === 'loading' ? '' : 'hidden'}`}>
-          <h3>Loading game...</h3>
+          
           <center>
-            <img src='https://i.imgur.com/s2jF9xM.gif'></img>  
+            <img src='https://i.imgur.com/s2jF9xM.gif'></img> 
+            <h2>Loading game...</h2> 
           </center>
 
         </div>
@@ -215,16 +222,15 @@ export default class Game extends React.Component {
         </div>
 
 
-        <div className={`${this.state.gameState === 'play' ? 'stage' : 'hidden'}`}>
+        <div id='game' className={`${this.state.gameState === 'first' ? 'stage' : 'hidden'} || ${this.state.gameState === 'play' ? 'stage animated fadeInRight' : 'hidden' }`}>
           <div>
             {!this.round ? <h2 id='r2p'>Get Ready To Play!</h2> : <h2>Round {this.round}</h2>}
-            <h3>Score: {this.state.score}</h3>
           </div>
 
           <div className='stagingArea'>
             <div className='questions'>
               {/* <h3></h3> */}
-              <div className=''><h2>Whats the name of this track?</h2></div>
+              <div className=''><h2>What's the name of this track?</h2></div>
               {/* map this.questions as this.questions populate on each round start */}
               <div className='choices'>
                 {/*button on click function that checks the button.event.value to the levelData.track_name if != then wrong, if == TRUE then correct, then run next round*/}
@@ -234,10 +240,19 @@ export default class Game extends React.Component {
           </div> {/* end of stagingArea */}
         </div> {/* end of stage */}
 
+        <div > {/* this is the cowndown timer */}
+          <div className={this.state.gameState === 'endscreen' ? 'hidden' : 'countDownEmpty' }></div>
+          <div className={this.state.gameState === 'endscreen' ? 'hidden' : 'countDown'} style={progbar}></div>
+        </div>
 
-        <div className={`${this.state.gameState === 'end' ?  'stage' : 'hidden'}`}>
+        <div className={this.state.gameState === 'endscreen' ? 'hidden' : 'gameBottom'}>
+          <h2>Score: {this.state.score}</h2>
+        </div>
+
+
+        <div className={`${this.state.gameState === 'end' ?  'stage animated fadeInRight' : 'hidden'}`}>
           <h2>Round {this.round}</h2>
-          {this.result ? <h3>Correct!</h3> : <h3>Wrong!</h3>}
+          {/* {this.result ? <h3>Correct!</h3> : <h3>Wrong!</h3>} */}
           {this.round ? <div className='endRound'>
 
             
@@ -245,16 +260,16 @@ export default class Game extends React.Component {
             <div className='flex-row'>
               <img className='roundImg' src={this.state.gameData[this.round].track_album_art}></img>
               <div className='flex-right'>
-                <p>Track: {this.state.gameData[this.round].track_name}</p>
-                <p>Artist: {this.state.gameData[this.round].track_artist}</p>
-                <p>From The Album: {this.state.gameData[this.round].track_in_album}</p>
+                <em>Track: {this.state.gameData[this.round].track_name}</em>
+                <em>Artist: {this.state.gameData[this.round].track_artist}</em>
+                <em>From The Album: {this.state.gameData[this.round].track_in_album}</em>
                 <br />
-                <p>You guessed this track in {parseFloat(30 - this.state.time / 1000).toFixed(2)} seconds!</p>
+                <em>You guessed this track in {parseFloat(30 - this.state.time / 1000).toFixed(2)} seconds!</em>
               </div>
             </div>
           </div> : null
           }
-          <button className='choiceButtons' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
+          <button className='nextRound' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
         </div>
 
         

@@ -239,9 +239,11 @@ button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
+
+  // color: #FFF;
+  // background-color: #33C3F0;
+  // border-color: #33C3F0; 
+}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -252,9 +254,10 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  // color: #FFF;
+  // background-color: #1EAEDB;
+  // border-color: #1EAEDB; 
+}
 
 
 /* Forms
@@ -300,8 +303,9 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
-  outline: 0; }
+  // border: 1px solid #33C3F0;
+  // outline: 0; 
+}
 label,
 legend {
   display: block;
@@ -521,6 +525,15 @@ h2 {
   max-width: 70%;
   align-self: center;
   justify-self: center;
+  border: none;
+  outline:none;
+}
+.dashButtons:hover{
+  color: #555555;
+}
+.dashButtons:focus{
+  border: none;
+  outline:none;
 }
 
 .fpBack {
@@ -581,6 +594,7 @@ h4 {
   margin-left: 310px;
   width: 400px;
   height: 30vh;
+  cursor: pointer;
 }
 
 
@@ -632,21 +646,18 @@ h5 {
   
 }
 
-
 .hidden{
   //hidden styles main
   display: none;
 }
 .stage{
-  // border: 2px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   width: 95vw;
-  height: 640px;
-  margin: auto;
-  margin-top: 8px;
+  height: 80vh;
+  margin: 0 auto;
 }
 .stagingArea{
   display: flex;
@@ -656,16 +667,16 @@ h5 {
   // border: 2px solid greenyellow;
   width: 95vw;
   height: 45vh;
-  margin: auto;
+  margin: 50px, auto;
 }
 .choices{
+  // margin-top: 50px;
   max-height: 920px;
   width: inherit;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-
   flex-wrap: wrap;
 }
 .questions{
@@ -676,14 +687,23 @@ h5 {
   justify-content: center;
 
 }
+.gameBottom{
+  width: 100vw;
+  z-index: 1;
+  bottom: 0px;
+  position: fixed;
+  min-height: 78px;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(4px);
+}
 .countDown{
   z-index: 2;
   bottom: 0px;
   position: fixed;
-  min-height: 10px;
+  min-height: 24px;
   background-color: rgb(6, 128, 204);
   padding: 0px;
-  transform: translateY(10px);
+  transform: translateY(-78px);
   transition: linear 0.2s;
 }
 .countDownEmpty{
@@ -691,9 +711,9 @@ h5 {
   bottom: 0px;
   position: fixed;
   width: 100vw;
-  min-height: 4px;
-  background-color: rgb(166, 182, 192);
-  padding: 3px;
+  min-height: 24px;
+  background-color: rgb(26, 53, 71);
+  transform: translateY(-78px);
 }
 h2, h3 {
   text-align: center;
@@ -705,7 +725,7 @@ h2, h3 {
   display: flex;
   flex-direction: column;
   // border: 2px solid rgba(128, 0, 128, 0.288);
-  margin: auto;
+  margin: 0 auto;
   align-items: center;
   padding-bottom: 2px;
 }
@@ -714,12 +734,47 @@ h2, h3 {
   margin: auto;
 }
 .choiceButtons{
-  background-color: white;
+  background-image: url('https://i.imgur.com/S4GgndC.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border:1px solid rgba(0, 0, 0, 0);
+  background-position: center;
   min-width: 480px;
   max-width: 480px;
-  margin: 20px;
   height: 80px;
   margin: 38px;
+  font-size: 26px;
+  white-space: pre-line;
+  overflow: hidden;
+  transition: all 0.1s ease-in-out;
+}
+
+.choiceButtons:hover {
+  transform: scale(1.05);
+}
+.choiceButtons:focus {
+  border: none;
+  outline:none;
+}
+.nextRound{
+  position: relative;
+  background-image: url('https://i.imgur.com/S4GgndC.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border:1px solid rgba(0, 0, 0, 0);
+  background-position: center;
+  min-width: 480px;
+  max-width: 480px;
+  height: 80px;
+  margin: auto;
+  font-size: 26px;
+}
+.nextRound:focus{
+  border: none;
+  outline:none;
+}
+em {
+  font-size: 28px;
 }
 .flex-row{
   display: flex;
@@ -745,7 +800,7 @@ h2, h3 {
   overflow: scroll;
 
   }
-  .resultsCard{
+.resultsCard{
     max-width: 30vw;
     display: flex;
     flex-wrap: wrap;
