@@ -198,11 +198,21 @@ export default class Game extends React.Component {
           </center>
 
         </div>
-        <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
-          <button  className='dashButtons' onClick={this.startGame} value='1' ><p>Play Game</p></button>
-          <button  className='dashButtons' onClick={this.cancelGame} value='1' ><p>Cancel</p></button>
-        </div>
 
+
+        <div>
+          <div className={`${this.state.gameState === 'start' ? 'startScreen' : 'hidden'}`}>
+            <div className="pregame-wrapper">
+              <div className="pregame-instructions">
+                <h3>You have 30 seconds to identify songs from your history. The faster you guess, the more points you get</h3>
+              </div>
+              <div className="pregame-buttons">
+                <button className='dashButtons' onClick={this.startGame} value='1' ><p>Start Game</p></button>
+                <button className='dashButtons' onClick={this.cancelGame} value='1' ><p>Cancel</p></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <div className={`${this.state.gameState === 'play' ? 'stage' : 'hidden'}`}>

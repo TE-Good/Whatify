@@ -496,6 +496,31 @@ h2 {
   min-width: 240px;
   color: black;
   font-size: 28px;
+  margin: 0 50px;
+}
+
+.pregame-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+.pregame-buttons{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  align-content: center;
+  justify-content: center;
+  align-content: center;
+  width: 70%;
+}
+
+.pregame-instructions{
+  max-width: 70%;
+  align-self: center;
+  justify-self: center;
 }
 
 .fpBack {
@@ -584,13 +609,13 @@ h5 {
 
 .dashRight{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-end;
   position: absolute;
   bottom: 15%;
-  height: 70vh;
+  height: 20vh;
   right: 5%;
-  width: 520px;
+  width: 80vw;
   margin: 2px;
   // border: 2px solid blue;
 }
