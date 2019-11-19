@@ -39,6 +39,7 @@ export default class Home extends React.Component{
 
         <div className='fullBleed'>
           <div className=''>
+            {/* <iframe src="https://player.vimeo.com/video/274702970"width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
             <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
             <img className='fpBack' src='https://cdn.dribbble.com/users/1770290/screenshots/6183149/bg_79.gif'></img>
           </div>
