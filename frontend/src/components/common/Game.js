@@ -206,14 +206,15 @@ export default class Game extends React.Component {
 
 
         <div className={`${this.state.gameState === 'play' ? 'stage' : 'hidden'}`}>
-          <div>{!this.round ? <h2 className='' id='r2p'>Get Ready To Play!</h2> : <h2>Round {this.round}</h2>}
+          <div>
+            {!this.round ? <h2 id='r2p'>Get Ready To Play!</h2> : <h2>Round {this.round}</h2>}
             <h3>Score: {this.state.score}</h3>
           </div>
 
           <div className='stagingArea'>
             <div className='questions'>
-              <h3></h3>
-              <h3>Whats the name of this track?</h3>
+              {/* <h3></h3> */}
+              <div className=''><h2>Whats the name of this track?</h2></div>
               {/* map this.questions as this.questions populate on each round start */}
               <div className='choices'>
                 {/*button on click function that checks the button.event.value to the levelData.track_name if != then wrong, if == TRUE then correct, then run next round*/}

@@ -32,6 +32,36 @@
 
 // /* Grid
 // –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Grid
+- Base Styles
+- Typography
+- Links
+- Buttons
+- Forms
+- Lists
+- Code
+- Tables
+- Spacing
+- Utilities
+- Clearing
+- Media Queries
+*/
+
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 // .container {
 //   position: relative;
 //   width: 100%;
@@ -200,9 +230,9 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: #333;
+  color: #222;
   border-color: #888;
-  outline: 0; }
+  outline: 1; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -435,6 +465,8 @@ h2 {
   color: #555;
   font-size: 5rem;
 }
+@import './animate.scss';
+
 
 .container{
   padding: 10px;
@@ -462,11 +494,33 @@ h2 {
   background-image: url('https://i.imgur.com/P6U1Qvj.png');
   background-size: contain;
   background-repeat: no-repeat;
+.center {
+  text-align: center;
+  margin: auto;
+  max-width: 80vw;
+}
+
+.fpBack {
+  width: 120%;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+  margin: -24px;
+  overflow: hidden;
+}
+.fullBleed {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.fp-login{
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // position: absolute;
+  position: absolute;
   top: 13.33%;
   margin-left: 50px;
   z-index: 2;
@@ -529,20 +583,40 @@ h5 {
   // border: 2px solid red;
   display: flex;
   flex-direction: column;
-  width: 85vw;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 95vw;
   height: 640px;
   margin: auto;
   margin-top: 8px;
 }
 .stagingArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   // border: 2px solid greenyellow;
-  width: 60vw;
+  width: 95vw;
   height: 45vh;
   margin: auto;
 }
 .choices{
+  max-height: 920px;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  flex-wrap: wrap;
+}
+.questions{
+  width: inherit;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 .countDown{
   min-height: 10px;
@@ -560,6 +634,7 @@ h5 {
 }
 h2, h3 {
   text-align: center;
+  margin: au;
 }
 .endRound{
   width: 60vw;
@@ -577,10 +652,11 @@ h2, h3 {
 }
 .choiceButtons{
   background-color: white;
-  width: 480px;
-  margin: 10px;
-  margin-top: 8px;
-  height: 50px;
+  min-width: 480px;
+  max-width: 480px;
+  margin: 20px;
+  height: 80px;
+  margin: 38px;
 }
 .flex-row{
   display: flex;
@@ -611,5 +687,4 @@ h2, h3 {
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
-  }
-
+  }}
