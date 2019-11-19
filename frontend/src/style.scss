@@ -509,11 +509,25 @@ h2 {
   height: 100%;
 }
 
-// .fp-login{
-//   background-image: url('https://i.imgur.com/P6U1Qvj.png');
-//   background-size: contain;
-//   background-repeat: no-repeat;
-// }
+.fp-wrapper{
+  display: flex;
+}
+
+.fp-header{
+  margin:150px 125px ;
+}
+
+.fp-login{
+  background-image: url('https://i.imgur.com/P6U1Qvj.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  position: absolute;
+  margin: 450px 310px;
+  width: 400px;
+  height: 30vh;
+}
 
 .center {
   text-align: center;

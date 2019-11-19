@@ -29,15 +29,16 @@ export default class Home extends React.Component {
   render() {
     return (
       <>
-        <div className={this.state.homeState != 'login' ? 'bg-image' : 'bg-image animated fadeOut'}>
-          <div>
-            <h1>WHATIFY?</h1>
-            <h2> Your Personal Music Quiz </h2>
-          </div>
-          <div className='fp-login' onClick={this.handleSubmit}>
+        <div className='bg-image'>
+          <div className='fp-wrapper'>
+            <div className='fp-header'>
+              <h1>WHATIFY?</h1>
+              <h2> Your Personal Music Quiz </h2>
+            </div>
+            <div className='fp-login' onClick={this.handleSubmit}>
+            </div>
           </div>
         </div>
-
 
 
         {/* <div className='fp-login' onClick={this.handleSubmit}>
