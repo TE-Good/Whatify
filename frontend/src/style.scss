@@ -562,6 +562,7 @@ h2 {
 }
 
 .fp-header{
+  transform: translateY(-80px);
   display: flex;
   flex-direction: column;
   margin: 20% 25px ;
@@ -899,7 +900,7 @@ em {
   
   .end-screen-bot {
     width: 100vw;
-    height: 70vh;
+    height: 65vh;
     // border: blue 3px dashed;
     display: flex;
     flex-wrap: wrap;
