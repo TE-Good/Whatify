@@ -46,6 +46,8 @@ export default class Game extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this)
     this.handleChoice = this.handleChoice.bind(this)
     this.startGame = this.startGame.bind(this)
+    this.handleBack = this.handleBack.bind(this)
+    this.handlePlayAgain = this.handlePlayAgain.bind(this)
     
     //gamestate is either loading, start, play or end, or first for first game for animations
   }
