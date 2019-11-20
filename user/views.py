@@ -12,6 +12,10 @@ class SpotifyUserListView(ListCreateAPIView):
     queryset = SpotifyUser.objects.all()
     serializer_class = SpotifyUserSerializer
 
+class SpotifyUserDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = SpotifyUser.objects.all()
+    serializer_class = SpotifyUserSerializer
+
 class SongCreateView(ListCreateAPIView):
     queryset = Song.objects.all()
     serializer_class = SongSerializer

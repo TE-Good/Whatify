@@ -10,6 +10,9 @@ export default class Game extends React.Component {
       time: 30000,
       gameState: 'loading',
       username: 'nuclearsheep',
+      user: {
+
+      },
       answers: ['a', 'b', 'c', 'd'],
       gameData: [
         { //empty index [0] is to prevents audio from starting as iframe will auto load data in state
@@ -56,6 +59,10 @@ export default class Game extends React.Component {
     axios.get('api/retrieve')
       .then(res => this.setState({ username: res.data }))
       .then(() => this.secondMount())
+    setTimeout(() => {
+      axios.get('/api/db/user')
+        .then(res => this.setState({ user: res.data.filter(user => user.username === this.state.username).pop() }))
+    }, 2000)
   }
 
   numbers() {
@@ -145,6 +152,11 @@ export default class Game extends React.Component {
       this.min = Math.min(this.minMax)
       this.max = Math.max(this.minMax)
       
+      if (this.state.user.score < this.state.score) {
+        axios.patch(`/api/db/user/${this.state.user.id}`, { score: this.state.score })
+          .then(res => console.log('updated user score: ', res))
+      }
+
       return this.round = 0
     }
     this.setState({ width: 100 })
@@ -200,6 +212,7 @@ export default class Game extends React.Component {
   // }
 
   render() {
+    console.log('all in state:', this.state)
     // console.log(this.state)
     var progbar = {
       width: this.state.width + 'vw'
@@ -283,7 +296,7 @@ export default class Game extends React.Component {
             </div>
           </div> : null
           }
-          <button className='nextRound' onClick={this.nextRound} value='1'>{this.round === 10 ? 'end game' : 'next round'}</button>
+          <button className='nextRound' onClick={this.nextRound} value='1'>{this.round === this.gameLength ? 'end game' : 'next round'}</button>
         </div>
 
         <div className={`${this.state.gameState === 'endscreen' ? 'end-stage' : 'hidden'}`}>

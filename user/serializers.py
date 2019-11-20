@@ -41,4 +41,4 @@ class SpotifyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SpotifyUser
-        fields = ('id', 'username', 'displayname', 'image', 'songs')
+        fields = ('id', 'username', 'displayname', 'image', 'songs', 'score')
