@@ -42,19 +42,20 @@ export default class Dash extends React.Component {
       <div className='fullBleed dash animated fadeIn slow'>
 
         <div>{this.state.dashState !== 'ready' ? <center><h3>Loading dashboard...</h3><img src='https://i.imgur.com/s2jF9xM.gif'></img></center> : <img className='animated fadeOut' src=''></img>}</div>
-        <div className='fp-header'>
-          <h1 className={this.state.user.username ? 'animated fadeIn' : 'hidden'}>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : '' }</h1>
-          {/* <h2 className={this.state.user.username ? 'h22 animated fadeIn' : 'hidden'}>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2> */}
-          <h2 className={this.state.user.username ? 'h22 animated fadeIn' : 'hidden'}>{this.state.user.username ? 'Go Fuck Yourself' : '' }</h2>
+        <div className='fp-wrapper'>
+          <div className='fp-panes'>
+            <div className='dash-header '>
+              <h1 className={this.state.user.username ? 'animated fadeIn' : 'hidden'}>{this.state.user.username ? `Welcome, ${this.state.user.username}.` : ''}</h1>
+              {/* <h2 className={this.state.user.username ? 'h22 animated fadeIn' : 'hidden'}>{this.state.user.username ? `Current Top Score: ${this.state.user.score}.` : '' }</h2> */}
+              <h2 className={this.state.user.username ? 'h22 animated fadeIn' : 'hidden'}>{this.state.user.username ? 'How well do you you know your music?' : ''}</h2>
+            </div>
+            <div className={this.state.user.username ? 'dashRight fadeIn' : 'hidden'}>
+              {/* <button className='dashButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button> */}
+              <button className='dashButtons animated fadeIn delay-2s' onClick={this.play}>Play</button>
+              <button className='dashButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
+            </div>
+          </div>
         </div>
-        <div className={this.state.user.username ? 'dashRight fadeIn' : 'hidden'}>
-          <button className='dashButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button>
-          <button className='dashButtons animated fadeIn delay-2s' onClick={this.play}>Play</button>
-          <button className='dashButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
-        </div>
-
-
-
       </div>
     )
   }

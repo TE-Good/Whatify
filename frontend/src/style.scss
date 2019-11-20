@@ -553,10 +553,22 @@ h2 {
 
 .fp-wrapper{
   display: flex;
+  flex-direction: column;
+}
+
+.fp-panes:first-of-type{
+  width: 60vw
+  
 }
 
 .fp-header{
-  margin:150px 125px ;
+  display: flex;
+  flex-direction: column;
+  margin: 20% 25px ;
+  h1{
+    text-align: center;
+    justify-self: center;
+  }
 }
 
 h4 {
@@ -592,9 +604,9 @@ h4 {
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
-  position: absolute;
-  margin-top: 450px;
-  margin-left: 310px;
+  // position: absolute;
+  margin-top: 5%;
+  margin-left: 30%;
   width: 400px;
   height: 30vh;
   cursor: pointer;
@@ -629,7 +641,7 @@ h5 {
   flex-direction: row;
   justify-content: flex-end;
   position: absolute;
-  bottom: 15%;
+  bottom: 12%;
   height: 20vh;
   right: 5%;
   width: 80vw;
@@ -647,6 +659,10 @@ h5 {
   background-position: center;
   padding: 20px;
   
+}
+
+.dash-header{
+  margin: 0 0 0 15%;
 }
 
 .hidden{

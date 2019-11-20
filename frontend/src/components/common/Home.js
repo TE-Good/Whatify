@@ -30,11 +30,16 @@ export default class Home extends React.Component {
       <>
         <div className={this.state.homeState !== 'login' ? 'bg-image' : 'bg-image animated fadeOut fast'}>
           <div className='fp-wrapper'>
-            <div className='fp-header'>
-              <h1>WHATIFY?</h1>
-              <h2> Your Personal Music Quiz </h2>
+            <div className='fp-panes'>
+              <div className='fp-header'>
+                <h1>WHATIFY?</h1>
+                <h2> Your Personal Music Quiz </h2>
+                <div className='fp-login' onClick={this.handleSubmit}>
+                </div>
+              </div>
             </div>
-            <div className='fp-login' onClick={this.handleSubmit}>
+              
+            <div className='fp-panes'>
             </div>
           </div>
         </div>
