@@ -1001,3 +1001,23 @@ em {
     // border: pink 2px dashed;
     font-size: 80px;
   }
+  .leaderImg{
+    max-width: 90px;
+    border-radius: 2px;
+  }
+  .leaderCard{
+    display: flex;
+    vertical-align: middle;
+    width: 40vw;
+    height: 90px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    margin: 5px;
+  }
+  .middle{
+    // margin: auto;
+    transform: translate(100px,20px);
+  }
+  .overScroll{
+    overflow: scroll;
+  }

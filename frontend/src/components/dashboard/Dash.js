@@ -10,7 +10,8 @@ export default class Dash extends React.Component {
       dashState: '', // '' or ready
       user: {
       }
-    }   
+    }  
+    this.leader = this.leader.bind(this) 
   }
 
   componentDidMount() {
@@ -38,6 +39,10 @@ export default class Dash extends React.Component {
     e.preventDefault()
     this.props.history.push('/play')
   }
+  leader(e){
+    e.preventDefault()
+    this.props.history.push('/leaderboard')
+  }
 
   render() {
     console.log(this.state)
@@ -57,6 +62,7 @@ export default class Dash extends React.Component {
             <div className={this.state.user.username ? 'dashRight fadeIn' : 'hidden'}>
               {/* <button className='dashButtons animated fadeIn delay-3s' onClick={null}>Leaderboard</button> */}
               <button className='dashButtons animated fadeIn delay-1s' onClick={this.play}>Play</button>
+              <button className='dashButtons animated fadeIn delay-1s' onClick={this.leader}>Leaderboard</button>
               <button className='dashButtons animated fadeIn delay-1s' onClick={this.logout}>Log out</button>
             </div>
           </div>
