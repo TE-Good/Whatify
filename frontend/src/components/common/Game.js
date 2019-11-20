@@ -309,14 +309,15 @@ export default class Game extends React.Component {
                   <button className='dashButtons' onClick={this.handleBack}>Back</button>
                 </div>
                 <div className='end-screen-top-one-inner'>
-                  <h1>Game Over</h1>
+                  <h1>You scored {this.state.score}</h1>
+                  <h3>in {this.timeSheet.toFixed(2)} seconds</h3>
                 </div>
                 <div className='end-screen-top-one-inner'>
                   <button className='dashButtons' onClick={this.handlePlayAgain}>Play Again</button>
                 </div>
               </div>
               <div className='end-screen-top-two'>
-                <h3>You scored {this.state.score} in {this.timeSheet.toFixed(2)} seconds</h3>
+                <h3>{this.state.score > this.state.user.score ? `New Hi-Score: ${this.state.score}!` : `Hi-Score: ${this.state.user.score}`}</h3>
               </div>
             </div>
             <div className='end-screen-bot'>

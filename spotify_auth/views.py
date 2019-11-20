@@ -108,8 +108,9 @@ class RetrieveUser(APIView):
         
         # r = requests.post('http://localhost:8000/db/user', data=payload)
       
-        whole_object = authed_spotify.current_user_top_tracks(limit=50, offset=1, time_range='long_term')
+        whole_object = authed_spotify.current_user_top_tracks(limit=50, offset=0, time_range='medium_term')
         whole_object_items = whole_object['items']
+        
         for i, index in enumerate(whole_object_items):
             print(index, i)
             track_id = whole_object_items[i]['id']
