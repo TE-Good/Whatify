@@ -14,6 +14,7 @@ spotipy = "*"
 python-dotenv = "*"
 request = "*"
 requests = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

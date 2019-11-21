@@ -1,3 +1,4 @@
+import django_heroku
 """
 Django settings for project project.
 
@@ -9,7 +10,6 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -149,3 +149,5 @@ load_dotenv(verbose=True)
 from pathlib import Path  # python3 only
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
+
+django_heroku.settings(locals())
