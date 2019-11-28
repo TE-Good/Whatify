@@ -142,7 +142,7 @@ class RetrieveUser(APIView):
 
             # r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
 
-        print(total_object)
+        # print(total_object)
         # r = requests.post('http://localhost:8000/db/collections', data=total_object)
 
         # print('track id ', 'song id = ', track_id)
