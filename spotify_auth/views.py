@@ -110,9 +110,9 @@ class RetrieveUser(APIView):
       
         whole_object = authed_spotify.current_user_top_tracks(limit=50, offset=0, time_range='medium_term')
         whole_object_items = whole_object['items']
-        
+      
         for i, index in enumerate(whole_object_items):
-            print(index, i)
+            # print(index, i)
             track_id = whole_object_items[i]['id']
             track_name = whole_object_items[i]['name']
             track_artist = whole_object_items[i]['album']['artists'][0]['name']
@@ -133,15 +133,17 @@ class RetrieveUser(APIView):
                 'SpotifyUser_username_id': profile_data.get('id'),
                 'Song_track_id': track_id
             }
-
-
+            
+          
             createdSong = SongSerializer(data=song_payload)
-            print(createdSong)
+            
             if createdSong.is_valid():
               createdSong.save()
 
             # r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
-            r = requests.post('http://localhost:8000/db/collections', data=collections_payload)
+
+        print(total_object)
+        # r = requests.post('http://localhost:8000/db/collections', data=total_object)
 
         # print('track id ', 'song id = ', track_id)
         # print('top song is called', track_name, 'by', track_artist, 'from the album', track_in_album)
