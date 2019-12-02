@@ -44,7 +44,7 @@ We use pipenv to create a virtual environment for python, if you require a virtu
 Make sure to install all our package dependencies from our package-lock files via `$ npm install` and `$ pipenv install` before starting.
 
 # Process
-This was a group project with 3 developers working together, @Tom, @Wilkie, @Davey. We used pen and paper to manage a lot of our plans in-real time due to the short length of our task.
+This was a group project with 3 developers working together, [@Tom Good](https://github.com/TE-Good), [@Matt Davey](https://github.com/nuclearsheep540) and [@Matt Wilkie](https://github.com/MattPRW). We used pen and paper to manage a lot of our plans in-real time due to the short length of our task.
 
 As a team we decided to follow a lot of Agile workflow methodologies; we started every day with a stand-up for the day discussing what problems we had to solve for the day, including any unresolved issues from the day before; we built the whole project via pair programming where every developer had a chance in navigating. We also followed the principles of feature-driven development (FDD) as we knew there was a lot to get build in a short amount of time, this way we were able to isolate certain features into bite-sized and manageable tasks.
 
