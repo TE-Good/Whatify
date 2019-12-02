@@ -73,14 +73,7 @@ class Callback(RetrieveUpdateDestroyAPIView):
         token_extract = token_num.get('access_token')
         authed_spotify = spotipy.Spotify(auth=token_extract)
         request = authed_spotify.me()
-        user_id = request.get('id')
-        dash_url = 'http://localhost:8000/dash'
-        payload = {'token': 'poop'}
-        session = requests.Session()
-
-        session.post(dash_url, data=payload, verify=False)
-        session.get('http://localhost:8000/dash')
-
+        
         return Response(user_id)
 
 class RetrieveUser(APIView):
