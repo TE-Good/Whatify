@@ -126,7 +126,7 @@ class RetrieveUser(APIView):
 Game logic and our front end were also tackled independently during our FDD approach. We visualised our game logic by wireframing on pen and paper, understanding the problems we were going to approach and how to overcome them. Our second phase involved hard-coding data into our react-state to emulate a real expectation from our back end at a scalable level. We were able to successfully build our game logic around this placeholder of data, and upon connecting our back end the next day, there were no issues and all the requests fit into place seamlessly.
 
 # Challenges
-Open auth as a concept, was a challenge to work with. As a new technology we weren’t familiar with, getting to grips with technology that authenticates users for third party apps was at first tricky and hard to test. It was difficult troubleshooting our build while unsure of how the product as a concept works, so this made it a real challenge.
+Open auth as a concept, was a challenge to work with. As a new technology we weren’t familiar with, getting to grips with technology that authenticates users for third party apps was at first tricky and hard to test. It was difficult troubleshooting our build while unsure of how open auth works, so this made it a real challenge.
 
 We initially attempted to create a many to many relationship table in our postgreSQL database to keep the database storage-efficient. We found combining the many to many table with user generated data challenging, due to the self-populating nature of the tables. As a short-term solution, we altered the song model to accept a username as a reference for us to filter in the front end.
 
@@ -136,6 +136,6 @@ Once we understood open auth, it became clearer on how to troubleshoot during ou
 The user generated population of tables was a task which the team had not faced before, and was required for our website to function. However, when tackling this we managed to complete the task relatively smoothly.
 
 # Further features
-Should we have had more time, we would have incorporated the many to many relationship table into the database to streamline the back end, and potentially cut down the front end calls to one.
+If we had more time, we could have incorporated the many to many relationship table into the database to streamline the back end, and potentially cut down the front end calls to one.
 
-By default our method of open authentication caches auth tokens server-side, this is resulting in only single-instances of authed users. To rectify this, we need to offset the access token from server-side to client-side, and we could achieve this via either signed cookies or local storage given more time.
+By default, the library we use to utilise Spotify’s open authentication, caches auth tokens server-side, this is resulting in only single-instances of authed users. To rectify this, we need to offset the access token from server-side to client-side, and we could achieve this via either signed cookies or local storage given more time.
