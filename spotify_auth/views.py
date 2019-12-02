@@ -4,6 +4,10 @@ import spotipy
 import spotipy.util as util
 import webbrowser
 
+from django.contrib.sessions.backends.base import SessionBase
+from django.core import signing
+from django.http import HttpResponse, HttpRequest
+
 from dotenv import load_dotenv
 
 import requests
@@ -52,6 +56,7 @@ scope = 'user-library-read user-top-read user-read-recently-played user-read-cur
 # cache = sp.get_access_token('')
 # print(cache)
 
+
 sp = None
 authed_spotify = None
 
@@ -63,6 +68,7 @@ class AuthOutput(APIView):
         url = sp.get_authorize_url()
         return Response(url)
 
+
 class Callback(RetrieveUpdateDestroyAPIView):
     def post(self, request):
         global sp
@@ -72,15 +78,30 @@ class Callback(RetrieveUpdateDestroyAPIView):
         # object1.replace('b\'?code=', '')
         # callback_url = object1.get(())
         token_num = sp.get_access_token(callback_url)
+            #now cash response in cookie
+
+            #token extract now needs to = cookie called access_token
         token_extract = token_num.get('access_token')
 
+
+          #the below might need to be a new function called when we get to  /dash
         global authed_spotify
         authed_spotify = spotipy.Spotify(auth=token_extract)
         request = authed_spotify.me()
         user_id = request.get('id')
-        print(request)
+        # print(request)
+ 
+        dash_url = 'http://localhost:8000/dash'
+        payload = {'token': 'poop'}
+        session = requests.Session() # save an instance of request.Session
+        session.post(dash_url, data=payload, verify=False)
+        session.get('http://localhost:8000/dash')
+
 
         return Response(user_id)
+
+
+
         # return Response(print(token.get('access_token')))
         # print('access: ', token.get('access_token'))
         # return Response(request.GET)
@@ -142,7 +163,7 @@ class RetrieveUser(APIView):
 
             # r = requests.post('http://localhost:8000/db/songcreate', data=song_payload)
 
-        print(total_object)
+        # print(total_object)
         # r = requests.post('http://localhost:8000/db/collections', data=total_object)
 
         # print('track id ', 'song id = ', track_id)
@@ -157,6 +178,9 @@ class ListUserSongs(ListAPIView):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
 
+def cookie_session(request):
+    request.session.set_test_cookie()
+    return HttpResponse("<h1>test<h1>")
 
 
 # get data from spotify
