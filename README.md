@@ -39,7 +39,7 @@ We store the results of this listening data on our own postgreSQL to streamline 
 
 # Installation
 
-We use pipenv to create a virtual environment for python, if you require a virtual environment we recomment pipenv via `$ brew install pipenv`.
+We use pipenv to create a virtual environment for python, if you require a virtual environment we recommend pipenv via `$ brew install pipenv`.
 
 Make sure to install all our package dependencies from our package-lock files via `$ npm install` and `$ pipenv install` before starting.
 
