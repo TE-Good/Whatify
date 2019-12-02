@@ -38,9 +38,10 @@ We store the results of this listening data on our own postgreSQL to streamline 
 6. From the end-game screen you can choose to play again or return to your dashboard. The dashboard can also show you the leaderboard, where you can view the highest scorers on Whatify,
 
 # Installation
-Make sure to install all our package dependencies from our package-lock file via `npm install` before starting.
 
-We use pipenv to create a virtual environment for python, if you require a virtual environment we recomment pipenv via `brew i pipenv`.
+We use pipenv to create a virtual environment for python, if you require a virtual environment we recomment pipenv via `$ brew install pipenv`.
+
+Make sure to install all our package dependencies from our package-lock files via `$ npm install` and `$ pipenv install` before starting.
 
 # Process
 This was a group project with 3 developers working together, @Tom, @Wilkie, @Davey. We used pen and paper to manage a lot of our plans in-real time due to the short length of our task.
