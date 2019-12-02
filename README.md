@@ -35,7 +35,7 @@ We store the results of this listening data on our own postgreSQL to streamline 
 
 5. A game lasts 10 rounds. Upon quiz completion, you will be shown an end-game screen reflecting your metrics from the game; time spent per round, points earnt and correct /  incorrect answers. 
 
-6. From the end-game screen you can choose to play again or return to your dashboard. The dashboard can also show you the leaderboard, where you can view the highest scorers on Whatify,
+6. From the end-game screen you can choose to play again or return to your dashboard. The dashboard can also show you the leaderboard, where you can view the highest scorers on Whatify.
 
 # Installation
 
@@ -48,11 +48,9 @@ This was a group project with 3 developers working together, @Tom, @Wilkie, @Dav
 
 As a team we decided to follow a lot of Agile workflow methodologies; we started every day with a stand-up for the day discussing what problems we had to solve for the day, including any unresolved issues from the day before; we built the whole project via pair programming where every developer had a chance in navigating. We also followed the principles of feature-driven development (FDD) as we knew there was a lot to get build in a short amount of time, this way we were able to isolate certain features into bite-sized and manageable tasks.
 
-Certain features we had to focus on were; Spotify user Authentication, we chose to dedicate 2 days of our task to this feature, knowing it was the biggest prerequisite to run our site’s quiz. We knew we had to at least get this feature working standalone before knowing the rest of the product could be built; Backend and models, 
+The first features we had to focus on was Spotify user Authentication, we chose to dedicate 2 days of our task to this feature, knowing it was the biggest prerequisite to run our site’s quiz. We knew we had to at least get this feature working standalone before knowing the rest of the product could be built.
 
-We began back end development by planning models and serializers required for the game-data that would be populated later in our postgreSQL database from our Spotify API requests. Using Django, we built views to control requests to and from Spotify API and our database to control data to and from the client. We built requests which gathered user data upon logging in, this creates a streamlined experience by gathering data in the background and enables a quick transition from log in to starting game.
-
-Game logic and our front end were also tackled independently during our FDD approach. We wireframed our game logic by hand, understanding the problems we were going to approach and how to overcome them. Our second phase involved hard-coding data into our react-state to emulate a real expectation from our backend at a scalable level. We were able to successfully build our game logic around this placeholder of data, and upon connecting our backend the next day, there were no issues and all the requests fit into place seamlessly.
+We began back end development by planning models and serializers required for the game-data that would be populated later in our postgreSQL database from the Spotify API requests. Using Django, we built views to control requests to and from Spotify API and our database to control data to and from the client. We built requests which gathered user data upon logging in, this creates a streamlined experience by gathering data in the background and enables a quick transition from log in to starting game.
 
 
 ```python
@@ -124,14 +122,20 @@ class RetrieveUser(APIView):
               createdSong.save()
         return Response(profile_data.get('id'))
 ```
+
+Game logic and our front end were also tackled independently during our FDD approach. We visualised our game logic by wireframing on pen and paper, understanding the problems we were going to approach and how to overcome them. Our second phase involved hard-coding data into our react-state to emulate a real expectation from our back end at a scalable level. We were able to successfully build our game logic around this placeholder of data, and upon connecting our back end the next day, there were no issues and all the requests fit into place seamlessly.
+
 # Challenges
 Open auth as a concept, was a challenge to work with. As a new technology we weren’t familiar with, getting to grips with technology that authenticates users for third party apps was at first tricky and hard to test. It was difficult troubleshooting our build while unsure of how the product as a concept works, so this made it a real challenge.
+
 We initially attempted to create a many to many relationship table in our postgreSQL database to keep the database storage-efficient. We found combining the many to many table with user generated data challenging, due to the self-populating nature of the tables. As a short-term solution, we altered the song model to accept a username as a reference for us to filter in the front end.
 
 # Wins
 Once we understood open auth, it became clearer on how to troubleshoot during our build and we’re proud of the result we’ve attained. Open authentication is something commonly found out there and we see it as a big win having successfully used it in our project.
+
 The user generated population of tables was a task which the team had not faced before, and was required for our website to function. However, when tackling this we managed to complete the task relatively smoothly.
 
 # Further features
 Should we have had more time, we would have incorporated the many to many relationship table into the database to streamline the back end, and potentially cut down the front end calls to one.
+
 By default our method of open authentication caches auth tokens server-side, this is resulting in only single-instances of authed users. To rectify this, we need to offset the access token from server-side to client-side, and we could achieve this via either signed cookies or local storage given more time.
