@@ -4,7 +4,7 @@
 ## Timeframe
 7 Days
 
-# Technologies Used
+## Technologies Used
 * Python
 * Django
 * PostgreSQL
