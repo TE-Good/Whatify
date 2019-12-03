@@ -57,7 +57,6 @@ We began back end development by planning models and serializers required for th
 class AuthOutput(APIView):
     def get(self, _request):
         global sp 
-        sp = None
         sp = spotipy.oauth2.SpotifyOAuth(spotify_client_id, spotify_client_secret, spotify_redirect_uri, state=None, scope=scope, cache_path=None, proxies=None)
         url = sp.get_authorize_url()
         return Response(url)
@@ -95,29 +94,18 @@ class RetrieveUser(APIView):
         whole_object_items = whole_object['items']
       
         for i, index in enumerate(whole_object_items):
-            track_id = whole_object_items[i]['id']
-            track_name = whole_object_items[i]['name']
-            track_artist = whole_object_items[i]['album']['artists'][0]['name']
-            track_preview = whole_object_items[i]['preview_url']
-            track_in_album = whole_object_items[i]['album']['name']
-            track_album_art = whole_object_items[i]['album']['images'][0]['url']
-
             song_payload = {
-              "track_id": track_id,
-              "track_name": track_name,
-              "track_artist": track_artist,
-              "track_preview": track_preview,
-              "track_in_album": track_in_album,
-              "track_album_art": track_album_art,
+              "track_id": whole_object_items[i]['id'],
+              "track_name": whole_object_items[i]['name'],
+              "track_artist": whole_object_items[i]['album']['artists'][0]['name'],
+              "track_preview":  whole_object_items[i]['preview_url'],
+              "track_in_album": whole_object_items[i]['album']['name'],
+              "track_album_art": whole_object_items[i]['album']['images'][0]['url'],
               "owner": profile_data.get('id')
-            }
-            collections_payload = {
-                'SpotifyUser_username_id': profile_data.get('id'),
-                'Song_track_id': track_id
             }
           
             createdSong = SongSerializer(data=song_payload)
-            
+
             if createdSong.is_valid():
               createdSong.save()
         return Response(profile_data.get('id'))
