@@ -20,6 +20,8 @@ Using open-authentication, users are able to connect to our app with Spotify and
 
 We store the results of this listening data on our own postgreSQL to streamline the backend process in requesting data for every quiz session.
 
+Website Link: http://www.whatify.me
+
 ## Instructions
 1. You can start your session by clicking ‘Connect with Spotify’ on the home page. If you are not already logged in with Spotify, you will be redirected to Spotify’s login page, where you can sign in and sign Whatify’s terms of use.
 
