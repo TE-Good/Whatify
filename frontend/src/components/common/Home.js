@@ -11,7 +11,6 @@ export default class Home extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-
   handleSubmit(e) {
     e.preventDefault()
     console.log('submitted')
