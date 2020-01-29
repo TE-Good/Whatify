@@ -1021,3 +1021,17 @@ em {
   .overScroll{
     overflow: scroll;
   }
+
+   // quick fick of leaderboard for m&g
+   .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 70vh;
+    width: 88vw;
+    margin: auto;
+    margin-top: 4%;
+    position: absolute;
+    left: 12%;
+    overflow: scroll;
+  }
