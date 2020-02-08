@@ -12,10 +12,10 @@ djangorestframework = "*"
 psycopg2-binary = "*"
 spotipy = "*"
 python-dotenv = "*"
-request = "*"
 requests = "*"
 django-heroku = "*"
 selenium = "*"
+request = "*"
 
 [requires]
 python_version = "3.7"
